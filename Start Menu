@@ -1,0 +1,117 @@
+import pygame
+
+pygame.init()
+
+black = (0,0,0,)
+white = (255,255,255)
+red = (153,0,0) #
+green = (0,204,0)
+blue = (0,0,102)
+yellow = (204,204,0)
+
+bright_red = (255,0,0)
+bright_green = (0,255,0)
+bright_blue = (51,51,255)
+bright_yellow = (255,255,0)
+
+
+
+class Buy_a_ride():
+    def __init__(self, window, items, bg_color=(213,232,212), font=None, font_size=30,
+                    font_color=(0, 0, 0)):
+        self.window = window
+        self.scr_width = self.window.get_rect().width
+        self.scr_height = self.window.get_rect().height
+
+        self.bg_color = bg_color
+        self.clock = pygame.time.Clock()
+
+        self.items = items
+        self.font = pygame.font.SysFont(font, font_size)
+        self.font_color = font_color
+
+        self.items = []
+        for index, item in enumerate(items):
+            label = self.font.render(item, 1, font_color)
+
+            width = label.get_rect().width
+            height = label.get_rect().height
+
+            posx = (self.scr_width / 2) - (width / 2)
+            # t_h: total height of text block
+            t_h = len(items) * height
+            posy = (self.scr_height / 2) - (t_h / 2) + (index * height)
+
+            self.items.append([item, label, (width, height), (posx, posy)])
+
+    def run(self):
+        mainloop = True
+        while mainloop:
+            # Limit frame speed to 50 FPS
+            self.clock.tick(2)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    mainloop = False
+
+            # Redraw the background
+            self.window.fill(self.bg_color)
+
+            for name, label, (width, height), (posx, posy) in self.items:
+                self.window.blit(label, (posx, posy))
+
+            mouse = pygame.mouse.get_pos()
+            # print(mouse)
+            # pygame.draw.rect(screen,red,(372,255,51,21))
+            # pygame.draw.rect(screen,blue,(355,277,87,22))
+            # pygame.draw.rect(screen,yellow,(337,300,125,20))
+            # pygame.draw.rect(screen,green,(371,321,55,17))
+
+            if 372+51 > mouse[0] > 372 and 255+21 > mouse[1] > 255:
+                pygame.draw.rect(screen,bright_red,(372,255,51,21))
+                pygame.draw.rect(screen,blue,(355,277,87,22))
+                pygame.draw.rect(screen,yellow,(337,300,125,20))
+                pygame.draw.rect(screen,green,(371,321,55,17))
+
+            elif 355+87 > mouse[0] > 355 and 277+22 > mouse[1] > 277:
+                pygame.draw.rect(screen,red,(372,255,51,21))
+                pygame.draw.rect(screen,bright_blue,(355,277,87,22))
+                pygame.draw.rect(screen,yellow,(337,300,125,20))
+                pygame.draw.rect(screen,green,(371,321,55,17))
+
+            elif 337+125 > mouse[0] > 377 and 300+20 > mouse[1] > 300:
+                pygame.draw.rect(screen,red,(372,255,51,21))
+                pygame.draw.rect(screen,blue,(355,277,87,22))
+                pygame.draw.rect(screen,bright_yellow,(337,300,125,20))
+                pygame.draw.rect(screen,green,(371,321,55,17))
+
+            elif 371+55 > mouse[0] > 371 and 321+17 > mouse[1] >321:
+                pygame.draw.rect(screen,red,(372,255,51,21))
+                pygame.draw.rect(screen,blue,(355,277,87,22))
+                pygame.draw.rect(screen,yellow,(337,300,125,20))
+                pygame.draw.rect(screen,bright_green,(371,321,55,17))
+
+            else:
+                pygame.draw.rect(screen,red,(372,255,51,21))
+                pygame.draw.rect(screen,blue,(355,277,87,22))
+                pygame.draw.rect(screen,yellow,(337,300,125,20))
+                pygame.draw.rect(screen,green,(371,321,55,17))
+
+
+
+            pygame.display.flip()
+            print(event)
+
+if __name__ == "__main__":
+        screen = pygame.display.set_mode((800, 600), 0, 32)
+        menu_items = ('Start', 'Settings', 'Instructions', 'Quit')
+
+        pygame.display.set_caption('Buy a ride')
+        gm = Buy_a_ride(screen, menu_items)
+        gm.run()
+
+
+
+
+pygame.quit()
+quit()
