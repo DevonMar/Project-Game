@@ -1,0 +1,29 @@
+import pygame
+
+
+def main():
+    img = pygame.image.load('C:/Bboard.png') #laadt het plaatje alleen je moet hem in de goede plek hebben of in dezelfde map als de code
+
+    white = (0, 0, 64) # kleur voor achtergrond
+    w = 815  #breedte window
+    h = 815  #lengte window
+    screen = pygame.display.set_mode((w, h)) #geeft grootte window
+
+
+    screen.fill((white)) 
+    screen.blit(img,(0,0))
+    pygame.display.flip()
+
+
+
+
+#loop
+    while True:
+        ev = pygame.event.poll()
+        if ev.type == pygame.QUIT:
+            break
+
+
+    pygame.quit()
+
+main()
