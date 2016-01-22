@@ -1,4 +1,5 @@
 import pygame
+from Music_list import *
 
 pygame.init()
 
@@ -29,6 +30,9 @@ class Buy_a_ride():
         self.items = items
         self.font = pygame.font.SysFont(font, font_size)
         self.font_color = font_color
+
+        pygame.mixer.music.load(maintheme)
+        pygame.mixer.music.play(-1,0.0)
 
         self.items = []
         for index, item in enumerate(items):
