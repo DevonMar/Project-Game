@@ -1,0 +1,17 @@
+#Main menu (speelt zich af bij het opstarten van het spel)
+maintheme = "Rollercoaster Tycoon 2 - Main Theme.wav"
+
+#Instructions (bij het lezen van de instructies)
+instructions = "Monopoly Deluxe Music 2.mp3"
+
+#Dice sound (bij het rollen van de dobbelsteen)
+dicesound = "Shake And Roll Dice Sound Effect.mp3"
+
+#Ka Ching sound (voor het kopen van een attractie/inkomen krijgen)
+cashsound = "ka-ching sound effect.mp3"
+
+#Main soundtrack during game
+gametheme = "_PS1_Monopoly OST - South Side Bar _EXTRA EXTENDED_.mp3"
+
+#Click sound for buttons
+buttonclick = "Axe Left Click Sound Effect.mp3"
