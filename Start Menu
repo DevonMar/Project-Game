@@ -1,120 +1,178 @@
+import sys
 import pygame
 from Music_list import *
 
 pygame.init()
 
-black = (0,0,0,)
-white = (255,255,255)
-red = (153,0,0) #
-green = (0,204,0)
-blue = (0,0,102)
-yellow = (204,204,0)
 
-bright_red = (255,0,0)
-bright_green = (0,255,0)
-bright_blue = (51,51,255)
-bright_yellow = (255,255,0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+BLACK = (0, 0, 0)
 
 
+class MenuItem(pygame.font.Font):
+    def __init__(self, text, font=None, font_size=30,
+                 font_color=BLACK, xxx_todo_changeme=(0, 0)):
+        (pos_x, pos_y) = xxx_todo_changeme
+        pygame.font.Font.__init__(self, font, font_size)
+        self.text = text
+        self.font_size = font_size
+        self.font_color = font_color
+        self.label = self.render(self.text, 1, self.font_color)
+        self.width = self.label.get_rect().width
+        self.height = self.label.get_rect().height
+        self.dimensions = (self.width, self.height)
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.position = pos_x, pos_y
 
-class Buy_a_ride():
-    def __init__(self, window, items, bg_color=(213,232,212), font=None, font_size=30,
-                    font_color=(0, 0, 0)):
+    def is_mouse_selection(self, xxx_todo_changeme1):
+        (posx, posy) = xxx_todo_changeme1
+        if (posx >= self.pos_x and posx <= self.pos_x + self.width) and \
+            (posy >= self.pos_y and posy <= self.pos_y + self.height):
+                return True
+        return False
+
+    def set_position(self, x, y):
+        self.position = (x, y)
+        self.pos_x = x
+        self.pos_y = y
+
+    def set_font_color(self, rgb_tuple):
+        self.font_color = rgb_tuple
+        self.label = self.render(self.text, 1, self.font_color)
+
+
+class MonoCoasterWeg:
+    def __init__(self, window, items, funcs, bg_color=(213,232,212), font=None, font_size=30,
+                    font_color=(WHITE)):
         self.window = window
-        self.scr_width = self.window.get_rect().width
-        self.scr_height = self.window.get_rect().height
+        self.win_width = self.window.get_rect().width
+        self.win_height = self.window.get_rect().height
 
         self.bg_color = bg_color
         self.clock = pygame.time.Clock()
 
-        self.items = items
-        self.font = pygame.font.SysFont(font, font_size)
-        self.font_color = font_color
-
-        pygame.mixer.music.load(maintheme)
-        pygame.mixer.music.play(-1,0.0)
-
+        self.funcs = funcs
         self.items = []
         for index, item in enumerate(items):
-            label = self.font.render(item, 1, font_color)
+            menu_item = MenuItem(item)
 
-            width = label.get_rect().width
-            height = label.get_rect().height
-
-            posx = (self.scr_width / 2) - (width / 2)
             # t_h: total height of text block
-            t_h = len(items) * height
-            posy = (self.scr_height / 2) - (t_h / 2) + (index * height)
+            text_height = len(items) * menu_item.height
+            pos_x = (self.win_width / 2) - (menu_item.width / 2)
+            # This line includes a bug fix by Ariel (Thanks!)
+            # Please check the comments section for an explanation
+            pos_y = (self.win_height / 2) - (text_height / 2) + ((index * 2) + index * menu_item.height)
 
-            self.items.append([item, label, (width, height), (posx, posy)])
+            menu_item.set_position(pos_x, pos_y)
+            self.items.append(menu_item)
+
+        self.mouse_is_visible = True
+        self.cur_item = None
+
+    def set_mouse_visibility(self):
+        if self.mouse_is_visible:
+            pygame.mouse.set_visible(True)
+        else:
+            pygame.mouse.set_visible(False)
+
+    def set_keyboard_selection(self, key):
+        """
+        Marks the MenuItem chosen via up and down keys.
+        """
+        for item in self.items:
+            # Return all to neutral
+            item.set_italic(False)
+            item.set_font_color(BLACK)
+
+        if self.cur_item is None:
+            self.cur_item = 0
+        else:
+            # Find the chosen item
+            if key == pygame.K_UP and \
+                    self.cur_item > 0:
+                self.cur_item -= 1
+            elif key == pygame.K_UP and \
+                    self.cur_item == 0:
+                self.cur_item = len(self.items) - 1
+            elif key == pygame.K_DOWN and \
+                    self.cur_item < len(self.items) - 1:
+                self.cur_item += 1
+            elif key == pygame.K_DOWN and \
+                    self.cur_item == len(self.items) - 1:
+                self.cur_item = 0
+
+        self.items[self.cur_item].set_italic(True)
+        self.items[self.cur_item].set_font_color(RED)
+
+        if key == pygame.K_SPACE or key == pygame.K_RETURN:
+            text = self.items[self.cur_item].text
+            self.funcs[text]()
+
+    def set_mouse_selection(self, item, mpos):
+        """Marks the MenuItem the mouse cursor hovers on."""
+        if item.is_mouse_selection(mpos):
+            item.set_font_color(RED)
+            item.set_italic(True)
+        else:
+            item.set_font_color(BLACK)
+            item.set_italic(False)
 
     def run(self):
         mainloop = True
         while mainloop:
             # Limit frame speed to 50 FPS
-            self.clock.tick(2)
+            self.clock.tick(50)
+
+            mpos = pygame.mouse.get_pos()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     mainloop = False
+                if event.type == pygame.KEYDOWN:
+                    self.mouse_is_visible = False
+                    self.set_keyboard_selection(event.key)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    for item in self.items:
+                        if item.is_mouse_selection(mpos):
+                            self.funcs[item.text]()
+
+            if pygame.mouse.get_rel() != (0, 0):
+                self.mouse_is_visible = True
+                self.cur_item = None
+
+            self.set_mouse_visibility()
 
             # Redraw the background
             self.window.fill(self.bg_color)
 
-            for name, label, (width, height), (posx, posy) in self.items:
-                self.window.blit(label, (posx, posy))
+            for item in self.items:
+                if self.mouse_is_visible:
+                    self.set_mouse_selection(item, mpos)
+                self.window.blit(item.label, item.position)
 
-            mouse = pygame.mouse.get_pos()
-            # print(mouse)
-            # pygame.draw.rect(screen,red,(372,255,51,21))
-            # pygame.draw.rect(screen,blue,(355,277,87,22))
-            # pygame.draw.rect(screen,yellow,(337,300,125,20))
-            # pygame.draw.rect(screen,green,(371,321,55,17))
+            pygame.display.update()
 
-            if 372+51 > mouse[0] > 372 and 255+21 > mouse[1] > 255:
-                pygame.draw.rect(screen,bright_red,(372,255,51,21))
-                pygame.draw.rect(screen,blue,(355,277,87,22))
-                pygame.draw.rect(screen,yellow,(337,300,125,20))
-                pygame.draw.rect(screen,green,(371,321,55,17))
-
-            elif 355+87 > mouse[0] > 355 and 277+22 > mouse[1] > 277:
-                pygame.draw.rect(screen,red,(372,255,51,21))
-                pygame.draw.rect(screen,bright_blue,(355,277,87,22))
-                pygame.draw.rect(screen,yellow,(337,300,125,20))
-                pygame.draw.rect(screen,green,(371,321,55,17))
-
-            elif 337+125 > mouse[0] > 377 and 300+20 > mouse[1] > 300:
-                pygame.draw.rect(screen,red,(372,255,51,21))
-                pygame.draw.rect(screen,blue,(355,277,87,22))
-                pygame.draw.rect(screen,bright_yellow,(337,300,125,20))
-                pygame.draw.rect(screen,green,(371,321,55,17))
-
-            elif 371+55 > mouse[0] > 371 and 321+17 > mouse[1] >321:
-                pygame.draw.rect(screen,red,(372,255,51,21))
-                pygame.draw.rect(screen,blue,(355,277,87,22))
-                pygame.draw.rect(screen,yellow,(337,300,125,20))
-                pygame.draw.rect(screen,bright_green,(371,321,55,17))
-
-            else:
-                pygame.draw.rect(screen,red,(372,255,51,21))
-                pygame.draw.rect(screen,blue,(355,277,87,22))
-                pygame.draw.rect(screen,yellow,(337,300,125,20))
-                pygame.draw.rect(screen,green,(371,321,55,17))
-
-
-
-            pygame.display.flip()
-            print(event)
 
 if __name__ == "__main__":
-        screen = pygame.display.set_mode((800, 600), 0, 32)
-        menu_items = ('Start', 'Settings', 'Instructions', 'Quit')
+    def hello_world():
+        print("Hello World!")
+    def link_to_setting():
+        print("link to settings")
+    def link_to_instructions():
+        print("link to instructions")
+    # Creating the screen
+    screen = pygame.display.set_mode((800, 600), 0, 32)
 
-        pygame.display.set_caption('Buy a ride')
-        gm = Buy_a_ride(screen, menu_items)
-        gm.run()
-
-
+    menu_items = ("Start", 'Settings', 'Instructions', 'Quit')
+    funcs = {'Start': hello_world,
+             'Settings': link_to_setting,
+             'Instructions': link_to_instructions,
+             'Quit': sys.exit}
+    pygame.display.set_caption('MonoCoasterWeg')
+    gm = MonoCoasterWeg(screen, funcs.keys(), funcs)
+    gm.run()
 
 
 pygame.quit()
