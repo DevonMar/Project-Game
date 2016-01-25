@@ -1,0 +1,41 @@
+import pygame
+
+pygame.init()
+
+#Sets the background color
+background_colour = (213, 232, 212)
+(width, height) = (1000,1000)
+logo = pygame.image.load('logo.png')
+
+#Creates class Instructions
+class Instructions:
+    def __init__(self, text, items, font=None, font_size = 30, font_color = (153,0,0), xxx_todo_changeme=(0, 0)):
+        (posX, posY) = xxx_todo_changeme
+        self.text = text
+        self.font_size = font_size
+        self.font_color = font_color
+        self.width = self.label.get_rect().width
+        self.height = self.label.get_rect().height
+        self.dimensions = (self.width, self.height)
+        self.posX = posX
+        self.posY = posY
+        self.position = posX, posY
+
+
+
+
+screen = pygame.display.set_mode((width, height))
+#Sets a title in your display
+pygame.display.set_caption('Instructions')
+#Imports the background color into the screen
+screen.fill(background_colour)
+screen.blit(logo, (250, 0))
+#Updates the whole window
+pygame.display.flip()
+
+
+running = True
+while running:
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      running = False
