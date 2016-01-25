@@ -50,6 +50,9 @@ class MonoCoasterWeg:
         self.win_width = self.window.get_rect().width
         self.win_height = self.window.get_rect().height
 
+        pygame.mixer.music.load(maintheme)
+        pygame.mixer.music.play(-1,0.0)
+        
         self.bg_color = bg_color
         self.clock = pygame.time.Clock()
 
