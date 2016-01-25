@@ -1,0 +1,34 @@
+import pygame, sys
+pygame.init()
+
+# sets background color
+background_colour = (213, 232, 212)
+
+# creates class text
+class Text(object):
+    def __init__(self):
+        pygame.init()
+        self.font = pygame.font.SysFont('Bookman old style', 20)
+        pygame.display.set_caption('Settings')
+        self.screen = pygame.display.set_mode((600,600), 0, 32)
+        self.screen.fill((background_colour))
+        pygame.display.update()
+
+    def addText(self):
+        self.screen.blit(self.font.render('Settings',True, (255,0,0)), (265, 20))
+        pygame.display.update()
+        self.screen.blit(self.font.render('<< Back to MENU',True, (255,0,0)), (400,500))
+        pygame.display.update()
+        self.screen.blit(self.font.render('SOUNDEFFECT          ON/OFF',True, (255,0,0)), (100,170))
+        pygame.display.update()
+        self.screen.blit(self.font.render('MUSIC                        ON/OFF',True, (255,0,0)), (100,200))
+        pygame.display.update()
+
+if __name__ == '__main__':
+    Text3 = Text()
+    Text3.addText()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit(); sys.exit();
+
