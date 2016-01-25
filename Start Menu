@@ -166,11 +166,11 @@ if __name__ == "__main__":
     # Creating the screen
     screen = pygame.display.set_mode((800, 600), 0, 32)
 
-    menu_items = ("Start", 'Settings', 'Instructions', 'Quit')
+    menu_items = ('Start', 'Settings', 'Instructions', 'Quit')
     funcs = {'Start': hello_world,
-             'Settings': link_to_setting,
+             'Quit': sys.exit,
              'Instructions': link_to_instructions,
-             'Quit': sys.exit}
+             'Settings': link_to_setting}
     pygame.display.set_caption('MonoCoasterWeg')
     gm = MonoCoasterWeg(screen, funcs.keys(), funcs)
     gm.run()
