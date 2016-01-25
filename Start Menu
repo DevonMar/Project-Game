@@ -109,6 +109,8 @@ class MonoCoasterWeg:
 
         if key == pygame.K_SPACE or key == pygame.K_RETURN:
             text = self.items[self.cur_item].text
+            pygame.mixer.music.load(buttonclick)
+            pygame.mixer.music.play(0,0.0)
             self.funcs[text]()
 
     def set_mouse_selection(self, item, mpos):
@@ -137,6 +139,8 @@ class MonoCoasterWeg:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.items:
                         if item.is_mouse_selection(mpos):
+                            pygame.mixer.music.load(buttonclick)
+                            pygame.mixer.music.play(0,0.0)
                             self.funcs[item.text]()
 
             if pygame.mouse.get_rel() != (0, 0):
