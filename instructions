@@ -1,5 +1,6 @@
 import pygame
 import sys
+from Music_list import *
 
 pygame.init()
 
@@ -28,6 +29,8 @@ class Text(object):
         pygame.display.set_caption('Instructions')
         self.screen = pygame.display.set_mode((600,600), 0, 32)
         self.screen.fill((background_colour))
+        pygame.mixer.music.load(instructions)
+        pygame.mixer.music.play(-1,0.0)
         pygame.display.update()
 
     def addText(self):
