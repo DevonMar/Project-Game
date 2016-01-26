@@ -1,0 +1,51 @@
+import pygame, sys
+pygame.init()
+
+# sets background color
+background_colour = (213, 232, 212)
+
+# creates class text
+class Text(object):
+    def __init__(self):
+        pygame.init()
+        self.font = pygame.font.SysFont('Bookman old style', 20)
+        pygame.display.set_caption('Credits')
+        self.screen = pygame.display.set_mode((600,600), 0, 32)
+        self.screen.fill((background_colour))
+        pygame.display.update()
+
+    def addText(self):
+        self.screen.blit(self.font.render('Credits',True, (255,0,0)), (265, 20))
+        pygame.display.update()
+        self.screen.blit(self.font.render('<< Back to MENU',True, (255,0,0)), (400,500))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Designed in 2015',True, (255,0,0)), (210,120))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Programmed in 2016',True, (255,0,0)), (195,150))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Programmed by:',True, (255,0,0)), (100,200))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Patrick Bos,',True, (255,0,0)), (100,230))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Tommy Galic,',True, (255,0,0)), (100,250))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Marinda Kooiman,',True, (255,0,0)), (100,270))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Rochelle Mangre',True, (255,0,0)), (100,290))
+        pygame.display.update()
+        self.screen.blit(self.font.render('and',True, (255,0,0)), (100,310))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Devon Marsham.',True, (255,0,0)), (100,330))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Music:',True, (255,0,0)), (100,370))
+        pygame.display.update()
+        self.screen.blit(self.font.render('Patrick Bos',True, (255,0,0)), (100,400))
+        pygame.display.update()
+
+if __name__ == '__main__':
+    Text3 = Text()
+    Text3.addText()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit(); sys.exit();
