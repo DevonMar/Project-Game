@@ -170,13 +170,16 @@ if __name__ == "__main__":
         print("link to settings")
     def link_to_instructions():
         print("link to instructions")
+    def link_to_credits():
+        print("link to credits")
     # Creating the screen
     screen = pygame.display.set_mode((800, 600), 0, 32)
 
-    menu_items = ('Start', 'Settings', 'Instructions', 'Quit')
+    menu_items = ('Start', 'Settings', 'Instructions', 'Credits', 'Quit')
     funcs = {'Start': hello_world,
              'Quit': sys.exit,
              'Instructions': link_to_instructions,
+             'Credits': link_to_credits,
              'Settings': link_to_setting}
     pygame.display.set_caption('MonoCoasterWeg')
     gm = MonoCoasterWeg(screen, funcs.keys(), funcs)
