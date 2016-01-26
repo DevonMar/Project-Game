@@ -4,6 +4,9 @@ maintheme = "Rollercoaster Tycoon 2 - Main Theme.wav"
 #Instructions (bij het lezen van de instructies)
 instructions = "Monopoly Deluxe Music 2.mp3"
 
+#Settings (bij de instellingen)
+settings = "Carnaval festival Efteling Muziek.mp3"
+
 #Dice sound (bij het rollen van de dobbelsteen)
 dicesound = "Shake And Roll Dice Sound Effect.mp3"
 
