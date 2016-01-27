@@ -1,0 +1,32 @@
+import pygame
+import random
+def main():
+
+    pygame.init()    # Prepare the PyGame module for use
+main_surface = pygame.display.set_mode((1000, 650))
+random_getal = random.randint(0,5)
+essential_cards = [pygame.image.load("Essentials\Essential_5.jpg"),
+                   pygame.image.load("Essentials\Essential_6.jpg"),
+                   pygame.image.load("Essentials\Essential_7.jpg"),
+                   pygame.image.load("Essentials\Essential_8.jpg")]
+
+chosen_card = essential_cards[random_getal].convert()
+
+
+        # Completely redraw the surface, starting with background
+main_surface.fill((213, 232, 212))
+
+        # Copy our image to the surface, at this (x,y) posn
+main_surface.blit(chosen_card, (50, 50))
+
+
+
+
+main()
+
+pygame.display.flip()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
