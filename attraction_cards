@@ -13,11 +13,6 @@ attraction_cards = [pygame.image.load("cards\ATM.png"), pygame.image.load("cards
 chosen_card = attraction_cards[random_getal].convert()
 
 
-    # Load an image to draw. Substitute your own.
-    # PyGame handles gif, jpg, png, etc. image types.
-   # ball = pygame.image.load("cards\DonutShop.png")
-
-
         # Completely redraw the surface, starting with background
 main_surface.fill((213, 232, 212))
 
