@@ -4,6 +4,12 @@ from Music_list import *
 
 pygame.init()
 
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BRIGHT_RED = (255,0,0)
+RED = (200,0,0)
+screen = pygame.display.set_mode((600,600),0,32)
+
 #Sets the background color
 background_colour = (213, 232, 212)
 (width, height) = (1000,1000)
@@ -35,44 +41,45 @@ class Text(object):
 
     def addText(self):
         self.screen.blit(self.font.render('',True, (255,0,0)), (265, 10))
-        pygame.display.update()
         self.screen.blit(self.font.render('Instructions',True, (255,0,0)), (265, 20))
-        pygame.display.update()
         self.screen.blit(self.font.render('Strategies:',True, (255,0,0)), (10, 40))
-        pygame.display.update()
         self.screen.blit(self.font.render('-You can play with up to 4 players!',True, (255,0,0)), (10, 70))
-        pygame.display.update()
         self.screen.blit(self.font.render('-Always buy the most expensive stuff.',True, (255,0,0)), (10, 90))
-        pygame.display.update()
         self.screen.blit(self.font.render('-Swap your old rides for new ones.',True, (255,0,0)), (10, 110))
-        pygame.display.update()
         self.screen.blit(self.font.render('-When you have completed your essential, buy nothing and just make money.',True, (255,0,0)), (10, 130))
-        pygame.display.update()
         self.screen.blit(self.font.render('-Always buy rollercoasters, because with those you earn the most money.',True, (255,0,0)), (10, 150))
-        pygame.display.update()
         self.screen.blit(self.font.render('Rules:',True, (255,0,0)), (10, 210))
-        pygame.display.update()
         self.screen.blit(self.font.render('• For every person that visits your park, you get income.',True, (255,0,0)), (10, 240))
-        pygame.display.update()
         self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 260))
-        pygame.display.update()
         self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 280))
-        pygame.display.update()
         self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 300))
-        pygame.display.update()
         self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 320))
         pygame.display.update()
-        #Moet nog aanklikbaar worden
-        self.screen.blit(self.font.render('<< Back to MENU',True, (255,0,0)), (450, 550))
-        pygame.display.update()
+
+    def run(self):
+        self.clock = pygame.time.Clock()
+        mainloop = True
+        while mainloop:
+            # Limit frame speed to 50 FPS
+            self.clock.tick(50)
+
+            mpos = pygame.mouse.get_pos()
+            print(mpos)
+            if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
+                pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
+            else:
+                pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+            pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit(); sys.exit()
 
 if __name__ == '__main__':
     Text3 = Text()
     Text3.addText()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit(); sys.exit();
+    Text3.run()
+
 
 
 
