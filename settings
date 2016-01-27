@@ -1,10 +1,13 @@
 import pygame, sys
+import time
 from Music_list import *
 pygame.init()
-
+clock = pygame.time.Clock()
 # sets background color
 background_colour = (213, 232, 212)
-
+BRIGHT_RED = (255,0,0)
+RED = (200,0,0)
+screen = pygame.display.set_mode((600,600),0,32)
 # creates class text
 class Text(object):
     def __init__(self):
@@ -18,6 +21,7 @@ class Text(object):
         pygame.display.update()
 
     def addText(self):
+        print("hello")
         self.screen.blit(self.font.render('Settings',True, (255,0,0)), (265, 20))
         pygame.display.update()
         self.screen.blit(self.font.render('<< Back to MENU',True, (255,0,0)), (400,500))
@@ -27,11 +31,27 @@ class Text(object):
         self.screen.blit(self.font.render('MUSIC                        ON/OFF',True, (255,0,0)), (100,200))
         pygame.display.update()
 
+    def run(self):
+        self.clock = pygame.time.Clock()
+        mainloop = True
+        while mainloop:
+            # Limit frame speed to 50 FPS
+            self.clock.tick(50)
+
+            mpos = pygame.mouse.get_pos()
+            print(mpos)
+            if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
+                pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
+            else:
+                pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+            pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit(); sys.exit()
+
 if __name__ == '__main__':
     Text3 = Text()
     Text3.addText()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit(); sys.exit();
+    Text3.run()
 
