@@ -1,0 +1,34 @@
+import pygame
+import random
+
+def main():
+
+    pygame.init()
+main_surface = pygame.display.set_mode((1000,650))
+pygame.display.set_caption('Chance cards')
+random_getal = random.randint(0,19)
+Chance_cards = [pygame.image.load("Chance001.jpg"), pygame.image.load("Chance002.jpg"),
+                    pygame.image.load("Chance003.jpg"), pygame.image.load("Chance004.jpg"),
+                    pygame.image.load("Chance005.jpg"), pygame.image.load("Chance006.jpg"),
+                    pygame.image.load("Chance007.jpg"), pygame.image.load("Chance008.jpg"),
+                    pygame.image.load("Chance009.jpg"), pygame.image.load("Chance010.jpg"),
+                    pygame.image.load("Chance011.jpg"), pygame.image.load("Chance012.jpg"),
+                    pygame.image.load("Chance013.jpg"), pygame.image.load("Chance014.jpg"),
+                    pygame.image.load("Chance015.jpg"), pygame.image.load("Chance016.jpg"),
+                    pygame.image.load("Chance017.jpg"), pygame.image.load("Chance018.jpg"),
+                    pygame.image.load("Chance019.jpg"), pygame.image.load("Chance020.jpg"),]
+chosen_card = Chance_cards[random_getal].convert()
+
+#background color
+main_surface.fill((213, 232, 212))
+#position
+main_surface.blit(chosen_card, (100, 120))
+
+main()
+
+pygame.display.flip()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
