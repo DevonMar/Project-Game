@@ -1,15 +1,18 @@
 import sys
 import pygame
+import time
 from Music_list import *
 img = pygame.image.load('logo.png')
-
 pygame.init()
 
-
+background_colour = (213, 232, 212)
 WHITE = (255, 255, 255)
-RED = (255, 0, 0)
+RED = (200, 0, 0)
+BRIGHT_RED = (255, 0, 0)
 BLACK = (0, 0, 0)
 
+clock = pygame.time.Clock()
+mpos = pygame.mouse.get_pos()
 
 class MenuItem(pygame.font.Font):
     def __init__(self, text, font=None, font_size=30,
@@ -43,7 +46,6 @@ class MenuItem(pygame.font.Font):
         self.font_color = rgb_tuple
         self.label = self.render(self.text, 1, self.font_color)
 
-
 class MonoCoasterWeg:
     def __init__(self, window, items, funcs, bg_color=(213,232,212), font=None, font_size=30,
                     font_color=(WHITE)):
@@ -65,8 +67,6 @@ class MonoCoasterWeg:
             # t_h: total height of text block
             text_height = len(items) * menu_item.height
             pos_x = (self.win_width / 2) - (menu_item.width / 2)
-            # This line includes a bug fix by Ariel (Thanks!)
-            # Please check the comments section for an explanation
             pos_y = (self.win_height / 2) - (text_height / 2) + ((index * 2) + index * menu_item.height)
 
             menu_item.set_position(pos_x, pos_y)
@@ -132,6 +132,7 @@ class MonoCoasterWeg:
             self.clock.tick(50)
 
             mpos = pygame.mouse.get_pos()
+            print(mpos)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -166,25 +167,184 @@ class MonoCoasterWeg:
 if __name__ == "__main__":
     def hello_world():
         print("Hello World!")
+
+
     def link_to_setting():
         print("link to settings")
+        class Text(object):
+            def __init__(self):
+                pygame.init()
+                self.clock = pygame.time.Clock()
+                self.font = pygame.font.SysFont('Bookman old style', 20)
+                pygame.display.set_caption('Settings')
+                self.screen = pygame.display.set_mode((600,600), 0, 32)
+                self.screen.fill((background_colour))
+                pygame.mixer.music.load(settings)
+                pygame.mixer.music.play(-1,0.0)
+                pygame.display.update()
+
+            def addText(self):
+                self.screen.blit(self.font.render('Settings',True, (255,0,0)), (265, 20))
+                self.screen.blit(self.font.render('SOUNDEFFECT                ON/OFF',True, (255,0,0)), (100,170))
+                self.screen.blit(self.font.render('MUSIC                              ON/OFF',True, (255,0,0)), (100,200))
+                pygame.display.update()
+
+            def run(self):
+                self.clock = pygame.time.Clock()
+                mainloop = True
+                while mainloop:
+                    # Limit frame speed to 50 FPS
+                    self.clock.tick(50)
+
+                    mpos = pygame.mouse.get_pos()
+                    print(mpos)
+                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
+                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
+                    else:
+                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit(); sys.exit()
+
+        if __name__ == '__main__':
+            Text3 = Text()
+            Text3.addText()
+            Text3.run()
+
     def link_to_instructions():
         print("link to instructions")
+        class Instructions:
+            def __init__(self, text, items, font=None, font_size = 30, font_color = (153,0,0), xxx_todo_changeme=(0, 0)):
+                (posX, posY) = xxx_todo_changeme
+                self.text = text
+                self.font_size = font_size
+                self.font_color = font_color
+                self.width = self.label.get_rect().width
+                self.height = self.label.get_rect().height
+                self.dimensions = (self.width, self.height)
+                self.posX = posX
+                self.posY = posY
+                self.position = posX, posY
+
+        class Text(object):
+            def __init__(self):
+                pygame.init()
+                self.font = pygame.font.SysFont('Bookman Old Style', 15)
+                pygame.display.set_caption('Instructions')
+                self.screen = pygame.display.set_mode((600,600), 0, 32)
+                self.screen.fill((background_colour))
+                pygame.mixer.music.load(instructions)
+                pygame.mixer.music.play(-1,0.0)
+                pygame.draw.rect(screen, RED,(475,540,100,40))
+                pygame.display.update()
+
+            def addText(self):
+                self.screen.blit(self.font.render('',True, (255,0,0)), (265, 10))
+                self.screen.blit(self.font.render('Instructions',True, (255,0,0)), (265, 20))
+                self.screen.blit(self.font.render('Strategies:',True, (255,0,0)), (10, 40))
+                self.screen.blit(self.font.render('-You can play with up to 4 players!',True, (255,0,0)), (10, 70))
+                self.screen.blit(self.font.render('-Always buy the most expensive stuff.',True, (255,0,0)), (10, 90))
+                self.screen.blit(self.font.render('-Swap your old rides for new ones.',True, (255,0,0)), (10, 110))
+                self.screen.blit(self.font.render('-When you have completed your essential, buy nothing and just make money.',True, (255,0,0)), (10, 130))
+                self.screen.blit(self.font.render('-Always buy rollercoasters, because with those you earn the most money.',True, (255,0,0)), (10, 150))
+                self.screen.blit(self.font.render('Rules:',True, (255,0,0)), (10, 210))
+                self.screen.blit(self.font.render('• For every person that visits your park, you get income.',True, (255,0,0)), (10, 240))
+                self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 260))
+                self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 280))
+                self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 300))
+                self.screen.blit(self.font.render('• ',True, (255,0,0)), (10, 320))
+                pygame.display.update()
+
+            def run(self):
+                self.clock = pygame.time.Clock()
+                mainloop = True
+                while mainloop:
+                    # Limit frame speed to 50 FPS
+                    self.clock.tick(50)
+
+                    mpos = pygame.mouse.get_pos()
+                    print(mpos)
+                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
+                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
+                    else:
+                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit(); sys.exit()
+
+
+        if __name__ == '__main__':
+            Text3 = Text()
+            Text3.addText()
+            Text3.run()
+
+
     def link_to_credits():
         print("link to credits")
+        class Text(object):
+            def __init__(self):
+                pygame.init()
+                self.font = pygame.font.SysFont('Bookman old style', 20)
+                pygame.display.set_caption('Credits')
+                self.screen = pygame.display.set_mode((600,600), 0, 32)
+                self.screen.fill((background_colour))
+                pygame.mixer.music.load(credits)
+                pygame.mixer.music.play(-1,0.0)
+                pygame.display.update()
+
+            def addText(self):
+                self.screen.blit(self.font.render('Credits',True, (255,0,0)), (265, 20))
+                self.screen.blit(self.font.render('Designed in 2015',True, (255,0,0)), (210,120))
+                self.screen.blit(self.font.render('Programmed in 2016',True, (255,0,0)), (195,150))
+                self.screen.blit(self.font.render('Programmed by:',True, (255,0,0)), (100,200))
+                self.screen.blit(self.font.render('Patrick Bos,',True, (255,0,0)), (100,230))
+                self.screen.blit(self.font.render('Tommy Galic,',True, (255,0,0)), (100,250))
+                self.screen.blit(self.font.render('Marinda Kooiman,',True, (255,0,0)), (100,270))
+                self.screen.blit(self.font.render('Rochelle Mangre',True, (255,0,0)), (100,290))
+                self.screen.blit(self.font.render('and',True, (255,0,0)), (100,310))
+                self.screen.blit(self.font.render('Devon Marsham.',True, (255,0,0)), (100,330))
+                self.screen.blit(self.font.render('Music:',True, (255,0,0)), (100,370))
+                self.screen.blit(self.font.render('Patrick Bos',True, (255,0,0)), (100,400))
+                pygame.display.update()
+
+            def run(self):
+                self.clock = pygame.time.Clock()
+                mainloop = True
+                while mainloop:
+                    # Limit frame speed to 50 FPS
+                    self.clock.tick(50)
+
+                    mpos = pygame.mouse.get_pos()
+                    print(mpos)
+                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
+                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
+                    else:
+                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit(); sys.exit()
+
+
+        if __name__ == '__main__':
+            Text3 = Text()
+            Text3.addText()
+            Text3.run()
+
     # Creating the screen
     screen = pygame.display.set_mode((800, 600), 0, 32)
 
     menu_items = ('Start', 'Settings', 'Instructions', 'Credits', 'Quit')
     funcs = {'Start': hello_world,
              'Quit': sys.exit,
-             'Instructions': link_to_instructions,
              'Credits': link_to_credits,
+             'Instructions': link_to_instructions,
              'Settings': link_to_setting}
     pygame.display.set_caption('MonoCoasterWeg')
     gm = MonoCoasterWeg(screen, funcs.keys(), funcs)
     gm.run()
-
 
 pygame.quit()
 quit()
