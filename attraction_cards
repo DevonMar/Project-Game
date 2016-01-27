@@ -1,0 +1,37 @@
+import pygame
+import random
+def main():
+
+    pygame.init()    # Prepare the PyGame module for use
+main_surface = pygame.display.set_mode((500, 500))
+random_getal = random.randint(0,7)
+attraction_cards = [pygame.image.load("cards\ATM.png"), pygame.image.load("cards\Coffee Shop.png"),
+                    pygame.image.load("cards\CottonCandyStall.png"), pygame.image.load("cards\DonutShop.png"),
+                    pygame.image.load("cards\DrinksStall.png"), pygame.image.load("cards\FirstAid.png"),
+                    pygame.image.load("cards\FriesShop.png"), pygame.image.load("cards\FruityIcesStall.png"),
+                    pygame.image.load("cards\HotDogStall.png"), pygame.image.load("cards\InformationKiosk.png")]
+chosen_card = attraction_cards[random_getal].convert()
+
+
+    # Load an image to draw. Substitute your own.
+    # PyGame handles gif, jpg, png, etc. image types.
+   # ball = pygame.image.load("cards\DonutShop.png")
+
+
+        # Completely redraw the surface, starting with background
+main_surface.fill((213, 232, 212))
+
+        # Copy our image to the surface, at this (x,y) posn
+main_surface.blit(chosen_card, (100, 120))
+
+
+
+
+main()
+
+pygame.display.flip()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
