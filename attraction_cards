@@ -1,32 +1,36 @@
 import pygame
 import random
-def main():
+def a_cards():
     pygame.init()    # Prepare the PyGame module for use
 
-main_surface = pygame.display.set_mode((500, 500))
-pygame.display.set_caption('Attraction Card')
-random_getal = random.randint(0,19)
-attraction_cards = [pygame.image.load("cards\ATM.png"), pygame.image.load("cards\Coffee Shop.png"),
-                    pygame.image.load("cards\CottonCandyStall.png"), pygame.image.load("cards\DonutShop.png"),
-                    pygame.image.load("cards\DrinksStall.png"), pygame.image.load("cards\FirstAid.png"),
-                    pygame.image.load("cards\FriesShop.png"), pygame.image.load("cards\FruityIcesStall.png"),
-                    pygame.image.load("cards\HotDogStall.png"), pygame.image.load("cards\InformationKiosk.png"),
-                    pygame.image.load("cards\LemonadeStand.png"), pygame.image.load("cards\Pizza Stall.png"),
-                    pygame.image.load("cards\PopcornStall.png"), pygame.image.load( "cards\Toilet.png"),
-                    pygame.image.load("cards\Log flume koper 1.png"), pygame.image.load("cards\Log flume koper 2.png"),
-                    pygame.image.load("cards\Log flume  koper 3.png"), pygame.image.load("cards\Log flume koper 4.png"),
-                    pygame.image.load("cards\maze koper 2.png"), pygame.image.load("cards\Maze koper 3.png")]
-chosen_card = attraction_cards[random_getal].convert()
+    a_cards_surface = pygame.display.set_mode((500, 500))
+    pygame.display.set_caption('Attraction Card')
+    random_getal = random.randint(0,19)
+    attraction_cards = [pygame.image.load("cards\ATM.png"), pygame.image.load("cards\Coffee Shop.png"),
+                        pygame.image.load("cards\CottonCandyStall.png"), pygame.image.load("cards\DonutShop.png"),
+                        pygame.image.load("cards\DrinksStall.png"), pygame.image.load("cards\FirstAid.png"),
+                        pygame.image.load("cards\FriesShop.png"), pygame.image.load("cards\FruityIcesStall.png"),
+                        pygame.image.load("cards\HotDogStall.png"), pygame.image.load("cards\InformationKiosk.png"),
+                        pygame.image.load("cards\LemonadeStand.png"), pygame.image.load("cards\Pizza Stall.png"),
+                        pygame.image.load("cards\PopcornStall.png"), pygame.image.load( "cards\Toilet.png"),
+                        pygame.image.load("cards\Log flume koper 1.png"), pygame.image.load("cards\Log flume koper 2.png"),
+                        pygame.image.load("cards\Log flume koper 3.png"), pygame.image.load("cards\Log flume koper 4.png"),
+                        pygame.image.load("cards\maze koper 2.png"), pygame.image.load("cards\Maze koper 3.png")]
+    chosen_card = attraction_cards[random_getal].convert()
+    my_font = pygame.font.SysFont("Courier", 16)
 
 
         # Completely redraw the surface, starting with background
-main_surface.fill((213, 232, 212))
+    a_cards_surface.fill((213, 232, 212))
 
         # Copy our image to the surface, at this (x,y) posn
-main_surface.blit(chosen_card, (100, 120))
+    a_cards_surface.blit(chosen_card, (100, 120))
+    the_text = my_font.render("Your card is:", True, (0,0,0))
+        # Copy the text surface to the main surface
+    a_cards_surface.blit(the_text, (10, 10))
 
 
-main()
+a_cards()
 
 pygame.display.flip()
 running = True
@@ -34,3 +38,4 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
