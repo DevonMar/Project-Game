@@ -14,6 +14,31 @@ BLACK = (0, 0, 0)
 clock = pygame.time.Clock()
 mpos = pygame.mouse.get_pos()
 
+def screen_fix():
+    pygame.display.set_mode((800, 600),0,32)
+    pygame.mixer.music.load(maintheme), pygame.mixer.music.play(-1,0.0)
+    pygame.display.set_caption('MonoCoasterWeg')
+
+def text_objects(text,font):
+    textSurface = font.render(text, True, BLACK)
+    return textSurface, textSurface.get_rect()
+
+def button(msg,x,y,w,h,ic,ac,action=None):
+    mpos = pygame.mouse.get_pos()
+    click =pygame.mouse.get_pressed()
+
+    if x+w > mpos[0] > x and y+h > mpos[1] > y:
+        pygame.draw.rect(screen, ac, (x, y, w, h))
+        if click[0] == 1 and action != None:
+            if action == "back":
+                screen_fix(),gm.run()
+    else:
+        pygame.draw.rect(screen, ic, (x, y, w, h))
+    smallText = pygame.font.Font("freesansbold.ttf",16)
+    textSurf, textRect = text_objects(msg ,smallText)
+    textRect.center = ((x+(w/2)),(y+(h/2)))
+    screen.blit(textSurf,textRect)
+
 class MenuItem(pygame.font.Font):
     def __init__(self, text, font=None, font_size=30,
                  font_color=BLACK, xxx_todo_changeme=(0, 0)):
@@ -132,7 +157,7 @@ class MonoCoasterWeg:
             self.clock.tick(50)
 
             mpos = pygame.mouse.get_pos()
-            print(mpos)
+            # print(mpos)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -168,7 +193,6 @@ if __name__ == "__main__":
     def hello_world():
         print("Hello World!")
 
-
     def link_to_setting():
         print("link to settings")
         class Text(object):
@@ -176,6 +200,7 @@ if __name__ == "__main__":
                 pygame.init()
                 self.clock = pygame.time.Clock()
                 self.font = pygame.font.SysFont('Bookman old style', 20)
+                self.font1 = pygame.font.SysFont('Bookman old style', 40)
                 pygame.display.set_caption('Settings')
                 self.screen = pygame.display.set_mode((600,600), 0, 32)
                 self.screen.fill((background_colour))
@@ -184,9 +209,9 @@ if __name__ == "__main__":
                 pygame.display.update()
 
             def addText(self):
-                self.screen.blit(self.font.render('Settings',True, (255,0,0)), (265, 20))
-                self.screen.blit(self.font.render('SOUNDEFFECT                ON/OFF',True, (255,0,0)), (100,170))
-                self.screen.blit(self.font.render('MUSIC                              ON/OFF',True, (255,0,0)), (100,200))
+                self.screen.blit(self.font1.render('Settings',True, (255,0,0)), (240, 20))
+                self.screen.blit(self.font.render('SOUND-EFFECT                         ON/OFF',True, (255,0,0)), (100,170))
+                self.screen.blit(self.font.render('MUSIC                                         ON/OFF',True, (255,0,0)), (100,200))
                 pygame.display.update()
 
             def run(self):
@@ -196,12 +221,8 @@ if __name__ == "__main__":
                     # Limit frame speed to 50 FPS
                     self.clock.tick(50)
 
-                    mpos = pygame.mouse.get_pos()
-                    print(mpos)
-                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
-                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
-                    else:
-                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    button("Main menu",475,540,100,40,RED,BRIGHT_RED,"back")
+
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -231,17 +252,17 @@ if __name__ == "__main__":
             def __init__(self):
                 pygame.init()
                 self.font = pygame.font.SysFont('Bookman Old Style', 15)
+                self.font1 = pygame.font.SysFont('Bookman Old Style', 30)
                 pygame.display.set_caption('Instructions')
                 self.screen = pygame.display.set_mode((600,600), 0, 32)
                 self.screen.fill((background_colour))
                 pygame.mixer.music.load(instructions)
                 pygame.mixer.music.play(-1,0.0)
-                pygame.draw.rect(screen, RED,(475,540,100,40))
                 pygame.display.update()
 
             def addText(self):
                 self.screen.blit(self.font.render('',True, (255,0,0)), (265, 10))
-                self.screen.blit(self.font.render('Instructions',True, (255,0,0)), (265, 20))
+                self.screen.blit(self.font1.render('Instructions',True, (255,0,0)), (235, 20))
                 self.screen.blit(self.font.render('Strategies:',True, (255,0,0)), (10, 40))
                 self.screen.blit(self.font.render('-You can play with up to 4 players!',True, (255,0,0)), (10, 70))
                 self.screen.blit(self.font.render('-Always buy the most expensive stuff.',True, (255,0,0)), (10, 90))
@@ -263,23 +284,17 @@ if __name__ == "__main__":
                     # Limit frame speed to 50 FPS
                     self.clock.tick(50)
 
-                    mpos = pygame.mouse.get_pos()
-                    print(mpos)
-                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
-                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
-                    else:
-                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    button("Main menu",475,540,100,40,RED,BRIGHT_RED,"back")
+
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             pygame.quit(); sys.exit()
 
-
         if __name__ == '__main__':
             Text3 = Text()
             Text3.addText()
             Text3.run()
-
 
     def link_to_credits():
         print("link to credits")
@@ -287,6 +302,7 @@ if __name__ == "__main__":
             def __init__(self):
                 pygame.init()
                 self.font = pygame.font.SysFont('Bookman old style', 20)
+                self.font1 = pygame.font.SysFont('Bookman old style', 30)
                 pygame.display.set_caption('Credits')
                 self.screen = pygame.display.set_mode((600,600), 0, 32)
                 self.screen.fill((background_colour))
@@ -295,7 +311,7 @@ if __name__ == "__main__":
                 pygame.display.update()
 
             def addText(self):
-                self.screen.blit(self.font.render('Credits',True, (255,0,0)), (265, 20))
+                self.screen.blit(self.font1.render('Credits',True, (255,0,0)), (240, 20))
                 self.screen.blit(self.font.render('Designed in 2015',True, (255,0,0)), (210,120))
                 self.screen.blit(self.font.render('Programmed in 2016',True, (255,0,0)), (195,150))
                 self.screen.blit(self.font.render('Programmed by:',True, (255,0,0)), (100,200))
@@ -316,17 +332,12 @@ if __name__ == "__main__":
                     # Limit frame speed to 50 FPS
                     self.clock.tick(50)
 
-                    mpos = pygame.mouse.get_pos()
-                    print(mpos)
-                    if 475+100 > mpos[0] > 475 and 540+40 > mpos[1] > 540:
-                        pygame.draw.rect(screen, BRIGHT_RED, (475, 540, 100, 40))
-                    else:
-                        pygame.draw.rect(screen, RED, (475, 540, 100, 40))
+                    button("Main menu",475,540,100,40,RED,BRIGHT_RED,"back")
+
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             pygame.quit(); sys.exit()
-
 
         if __name__ == '__main__':
             Text3 = Text()
