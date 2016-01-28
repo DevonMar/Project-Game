@@ -16,12 +16,15 @@ Chance_cards = [pygame.image.load("Chance001.jpg"), pygame.image.load("Chance002
                     pygame.image.load("Chance013.jpg"), pygame.image.load("Chance014.jpg"),
                     pygame.image.load("Chance015.jpg"), pygame.image.load("Chance016.jpg"),
                     pygame.image.load("Chance017.jpg"), pygame.image.load("Chance018.jpg"),
-                    pygame.image.load("Chance019.jpg"), pygame.image.load("Chance020.jpg"),]
+                    pygame.image.load("Chance019.jpg"), pygame.image.load("Chance020.jpg"),
+                    pygame.image.load("Chance021.jpg"), pygame.image.load("Chance022.jpg"),
+                    pygame.image.load("Chance023.jpg"), pygame.image.load("Chance024.jpg"),
+                    pygame.image.load("Chance025.jpg"), pygame.image.load("Chance026.jpg"),
+                    pygame.image.load("Chance027.jpg"), pygame.image.load("Chance028.jpg"),]
+
 chosen_card = Chance_cards[random_getal].convert()
 
-#background color
 main_surface.fill((213, 232, 212))
-#position
 main_surface.blit(chosen_card, (100, 120))
 
 main()
