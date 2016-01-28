@@ -1,13 +1,13 @@
 import pygame
 import random
 
-def main():
+def c_cards():
 
     pygame.init()
-main_surface = pygame.display.set_mode((1000,650))
-pygame.display.set_caption('Chance cards')
-random_getal = random.randint(0,19)
-Chance_cards = [pygame.image.load("Chance001.jpg"), pygame.image.load("Chance002.jpg"),
+    c_cards_surface = pygame.display.set_mode((1000,650))
+    pygame.display.set_caption('Chance cards')
+    random_getal = random.randint(0,19)
+    Chance_cards = [pygame.image.load("Chance001.jpg"), pygame.image.load("Chance002.jpg"),
                     pygame.image.load("Chance003.jpg"), pygame.image.load("Chance004.jpg"),
                     pygame.image.load("Chance005.jpg"), pygame.image.load("Chance006.jpg"),
                     pygame.image.load("Chance007.jpg"), pygame.image.load("Chance008.jpg"),
@@ -22,12 +22,16 @@ Chance_cards = [pygame.image.load("Chance001.jpg"), pygame.image.load("Chance002
                     pygame.image.load("Chance025.jpg"), pygame.image.load("Chance026.jpg"),
                     pygame.image.load("Chance027.jpg"), pygame.image.load("Chance028.jpg"),]
 
-chosen_card = Chance_cards[random_getal].convert()
+    chosen_card = Chance_cards[random_getal].convert()
+    my_font = pygame.font.SysFont("Bookman Old Style", 16, bold = True)
+    c_cards_surface.fill((213, 232, 212))
+    c_cards_surface.blit(chosen_card, (100, 120))
+    #Sets the text
+    the_text = my_font.render("Your card is:", True, (0,0,0))
+    #Adds the text to the screen, with the positions
+    c_cards_surface.blit(the_text, (10, 10))
 
-main_surface.fill((213, 232, 212))
-main_surface.blit(chosen_card, (100, 120))
-
-main()
+c_cards()
 
 pygame.display.flip()
 running = True
