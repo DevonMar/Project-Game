@@ -1,9 +1,9 @@
 import pygame
 import random
 def a_cards():
-    pygame.init()    # Prepare the PyGame module for use
+    pygame.init() 
 
-    a_cards_surface = pygame.display.set_mode((500, 500))
+    a_cards_surface = pygame.display.set_mode((350, 450))
     pygame.display.set_caption('Attraction Card')
     random_getal = random.randint(0,19)
     attraction_cards = [pygame.image.load("cards\ATM.png"), pygame.image.load("cards\Coffee Shop.png"),
@@ -17,16 +17,17 @@ def a_cards():
                         pygame.image.load("cards\Log flume koper 3.png"), pygame.image.load("cards\Log flume koper 4.png"),
                         pygame.image.load("cards\maze koper 2.png"), pygame.image.load("cards\Maze koper 3.png")]
     chosen_card = attraction_cards[random_getal].convert()
-    my_font = pygame.font.SysFont("Courier", 16)
+    my_font = pygame.font.SysFont("Bookman Old Style", 16)
 
 
-        # Completely redraw the surface, starting with background
+    #Fills the background
     a_cards_surface.fill((213, 232, 212))
 
-        # Copy our image to the surface, at this (x,y) posn
+    #Adds your image to  the screen, with positions
     a_cards_surface.blit(chosen_card, (100, 120))
+    #Sets the text
     the_text = my_font.render("Your card is:", True, (0,0,0))
-        # Copy the text surface to the main surface
+    #Adds the text to the screen, with the positions
     a_cards_surface.blit(the_text, (10, 10))
 
 
@@ -38,4 +39,3 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
