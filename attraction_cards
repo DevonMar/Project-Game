@@ -1,7 +1,7 @@
 import pygame
 import random
 def a_cards():
-    pygame.init() 
+    pygame.init()
 
     a_cards_surface = pygame.display.set_mode((350, 450))
     pygame.display.set_caption('Attraction Card')
@@ -17,7 +17,7 @@ def a_cards():
                         pygame.image.load("cards\Log flume koper 3.png"), pygame.image.load("cards\Log flume koper 4.png"),
                         pygame.image.load("cards\maze koper 2.png"), pygame.image.load("cards\Maze koper 3.png")]
     chosen_card = attraction_cards[random_getal].convert()
-    my_font = pygame.font.SysFont("Bookman Old Style", 16)
+    my_font = pygame.font.SysFont("Bookman Old Style", 20)
 
 
     #Fills the background
@@ -28,7 +28,7 @@ def a_cards():
     #Sets the text
     the_text = my_font.render("Your card is:", True, (0,0,0))
     #Adds the text to the screen, with the positions
-    a_cards_surface.blit(the_text, (10, 10))
+    a_cards_surface.blit(the_text, (110, 90))
 
 
 a_cards()
