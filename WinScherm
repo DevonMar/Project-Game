@@ -1,0 +1,28 @@
+import pygame
+from Music_list import *
+
+def winscherm():
+    pygame.init()
+    winscherm_surface = pygame.display.set_mode((350, 450))
+    pygame.display.set_caption('The Winner is...')
+    my_font = pygame.font.SysFont("broadway", 40)
+    pygame.mixer.music.load(applause)
+    pygame.mixer.music.play(0, 0.0)
+
+    #Fills the background
+    winscherm_surface.fill((213, 232, 212))
+
+    #Sets the text
+    the_text = my_font.render("The Winner Is:", True,(255,0,0))
+    #Adds the text to the screen, with the positions
+    winscherm_surface.blit(the_text, (20, 90))
+
+
+winscherm()
+
+pygame.display.flip()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
