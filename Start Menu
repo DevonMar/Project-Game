@@ -12,11 +12,18 @@ BLACK = (0, 0, 0)
 
 # clock = pygame.time.Clock()
 mpos = pygame.mouse.get_pos()
-
+audio_count = 0
+if audio_count == 0:
+    pygame.mixer.init()
+else:
+    pygame.mixer.stop()
+    pygame.mixer.quit()
 
 def screen_fix():
     pygame.display.set_mode((800, 600), 0, 32)
-    pygame.mixer.music.load(maintheme), pygame.mixer.music.play(-1, 0.0)
+    if audio_count == 0:
+        pygame.mixer.music.load(maintheme)
+        pygame.mixer.music.play(-1, 0.0)
     pygame.display.set_caption('MonoCoasterWeg')
 
 
@@ -28,12 +35,23 @@ def text_objects(text, font):
 def button(msg, x, y, w, h, ic, ac, action=None):
     mpos = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
+    global audio_count
 
     if x+w > mpos[0] > x and y+h > mpos[1] > y:
         pygame.draw.rect(screen, ac, (x, y, w, h))
-        if click[0] == 1 and action != None:
+        if click[0] == 1 and action is not None:
             if action == "back":
-                screen_fix(), gm.run()
+                screen_fix()
+                gm.run()
+                pygame.mixer.stop()
+            elif action == "audio_off":
+                pygame.mixer.quit()
+                audio_count = 1
+            elif action == "audio_on":
+                pygame.mixer.music.load(settings)
+                pygame.mixer.music.play(-1, 0.0)
+                audio_count = 0
+
     else:
         pygame.draw.rect(screen, ic, (x, y, w, h))
     smalltext = pygame.font.Font("freesansbold.ttf", 16)
@@ -80,8 +98,11 @@ class MonoCoasterWeg:
         self.win_width = self.window.get_rect().width
         self.win_height = self.window.get_rect().height
 
-        pygame.mixer.music.load(maintheme)
-        pygame.mixer.music.play(-1, 0.0)
+        if audio_count == 0:
+            pygame.mixer.music.load(maintheme)
+            pygame.mixer.music.play(-1, 0.0)
+        else:
+            print(pygame.mixer.get_init())
 
         self.bg_color = bg_color
         self.clock = pygame.time.Clock()
@@ -139,8 +160,9 @@ class MonoCoasterWeg:
 
         if key == pygame.K_SPACE or key == pygame.K_RETURN:
             text = self.items[self.cur_item].text
-            pygame.mixer.music.load(buttonclick)
-            pygame.mixer.music.play(0, 0.0)
+            if audio_count == 0:
+                pygame.mixer.music.load(buttonclick)
+                pygame.mixer.music.play(0, 0.0)
             self.funcs[text]()
 
     def set_mouse_selection(self, item, mpos):
@@ -170,8 +192,9 @@ class MonoCoasterWeg:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.items:
                         if item.is_mouse_selection(mpos):
-                            pygame.mixer.music.load(buttonclick)
-                            pygame.mixer.music.play(0, 0.0)
+                            if pygame.mixer.init():
+                                pygame.mixer.music.load(buttonclick)
+                                pygame.mixer.music.play(0, 0.0)
                             self.funcs[item.text]()
 
             if pygame.mouse.get_rel() != (0, 0):
@@ -207,15 +230,14 @@ if __name__ == "__main__":
                 pygame.display.set_caption('Settings')
                 self.screen = pygame.display.set_mode((600, 600), 0, 32)
                 self.screen.fill(background_colour)
-                pygame.mixer.music.load(settings)
-                pygame.mixer.music.play(-1, 0.0)
+                if audio_count == 0:
+                    pygame.mixer.music.load(settings)
+                    pygame.mixer.music.play(-1, 0.0)
                 pygame.display.update()
 
             def addtext(self):
                 self.screen.blit(self.font1.render('Settings', True, (255, 0, 0)), (240, 20))
-                self.screen.blit(self.font.render('SOUND-EFFECT                         ON/OFF', True, (255, 0, 0)), (100, 170))
-                self.screen.blit(self.font.render('MUSIC                                         ON/OFF', True, (255, 0, 0)), (100, 200))
-                self.screen.blit(self.font.render('Settings werken nog niet(komen maybe als er tijd is)', True, (255, 0, 0)), (80, 230))
+                self.screen.blit(self.font.render('AUDIO', True, (255, 0, 0)), (100, 200))
                 pygame.display.update()
 
             def run(self):
@@ -226,6 +248,8 @@ if __name__ == "__main__":
                     self.clock.tick(50)
 
                     button("Main menu", 475, 540, 100, 40, RED, BRIGHT_RED, "back")
+                    button("ON", 400, 200, 50, 20, RED, BRIGHT_RED, "audio_on")
+                    button("OFF", 460, 200, 50, 20, RED, BRIGHT_RED, "audio_off")
 
                     pygame.display.update()
                     for event in pygame.event.get():
@@ -243,13 +267,15 @@ if __name__ == "__main__":
         class Text(object):
             def __init__(self):
                 pygame.init()
+                self.clock = pygame.time.Clock()
                 self.font = pygame.font.SysFont('Bookman Old Style', 15)
                 self.font1 = pygame.font.SysFont('Bookman Old Style', 30)
                 pygame.display.set_caption('Instructions')
                 self.screen = pygame.display.set_mode((600, 600), 0, 32)
                 self.screen.fill(background_colour)
-                pygame.mixer.music.load(instructions)
-                pygame.mixer.music.play(-1, 0.0)
+                if audio_count == 0:
+                    pygame.mixer.music.load(instructions)
+                    pygame.mixer.music.play(-1, 0.0)
                 pygame.display.update()
 
             def addtext(self):
@@ -294,13 +320,15 @@ if __name__ == "__main__":
         class Text(object):
             def __init__(self):
                 pygame.init()
+                self.clock = pygame.time.Clock()
                 self.font = pygame.font.SysFont('Bookman old style', 20)
                 self.font1 = pygame.font.SysFont('Bookman old style', 30)
                 pygame.display.set_caption('Credits')
                 self.screen = pygame.display.set_mode((600, 600), 0, 32)
                 self.screen.fill(background_colour)
-                pygame.mixer.music.load(credits)
-                pygame.mixer.music.play(-1, 0.0)
+                if audio_count == 0:
+                    pygame.mixer.music.load(credits)
+                    pygame.mixer.music.play(-1, 0.0)
                 pygame.display.update()
 
             def addtext(self):
@@ -345,7 +373,8 @@ if __name__ == "__main__":
              'Quit': sys.exit,
              'Credits': link_to_credits,
              'Instructions': link_to_instructions,
-             'Settings': link_to_setting}
+             'Settings': link_to_setting
+             }
     pygame.display.set_caption('MonoCoasterWeg')
     gm = MonoCoasterWeg(screen, funcs.keys(), funcs)
     gm.run()
