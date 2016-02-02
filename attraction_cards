@@ -1,5 +1,7 @@
 import pygame
 import random
+from Music_list import *
+
 def a_cards():
     pygame.init()
 
@@ -18,7 +20,9 @@ def a_cards():
                         pygame.image.load("cards\maze koper 2.png"), pygame.image.load("cards\Maze koper 3.png")]
     chosen_card = attraction_cards[random_getal].convert()
     my_font = pygame.font.SysFont("Bookman Old Style", 20)
-
+    #Adds the music
+    pygame.mixer.music.load(shufflecards)
+    pygame.mixer.music.play(0, 0.0)
 
     #Fills the background
     a_cards_surface.fill((213, 232, 212))
@@ -26,7 +30,7 @@ def a_cards():
     #Adds your image to  the screen, with positions
     a_cards_surface.blit(chosen_card, (100, 120))
     #Sets the text
-    the_text = my_font.render("Your card is:", True, (0,0,0))
+    the_text = my_font.render("Your card is:", True,(255,0,0))
     #Adds the text to the screen, with the positions
     a_cards_surface.blit(the_text, (110, 90))
 
