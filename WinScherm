@@ -1,11 +1,16 @@
 import pygame
 from Music_list import *
 
+#Defines winscherm
 def winscherm():
     pygame.init()
+    #Sets the size of the screen
     winscherm_surface = pygame.display.set_mode((350, 450))
+    #Sets the name of the screen(top left)
     pygame.display.set_caption('The Winner is...')
+    #Sets the font
     my_font = pygame.font.SysFont("broadway", 40)
+    #Adds the music
     pygame.mixer.music.load(applause)
     pygame.mixer.music.play(0, 0.0)
 
