@@ -27,3 +27,6 @@ pawnmove = "Knock on Wood - Sound Effect.wav"
 
 # Winning screen sound
 applause = "Crowd Applause Sound Effect.mp3"
+
+# Cards sound
+shufflecards = "Shuffle cards sound effect.mp3"
