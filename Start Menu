@@ -328,7 +328,7 @@ if __name__ == "__main__":
                 self.font = pygame.font.SysFont('Bookman Old Style', 15)
                 self.font1 = pygame.font.SysFont('Bookman Old Style', 30)
                 pygame.display.set_caption('Instructions')
-                self.screen = pygame.display.set_mode((600, 600), 0, 32)
+                self.screen = pygame.display.set_mode((800, 800), 0, 32)
                 self.screen.fill(background_colour)
                 if audio_count == 0:
                     pygame.mixer.music.load(instructions)
@@ -346,10 +346,17 @@ if __name__ == "__main__":
                 self.screen.blit(self.font.render('-Always buy rollercoasters, because with those you earn the most money.', True, (255, 0, 0)), (10, 150))
                 self.screen.blit(self.font.render('Rules:', True, (255, 0, 0)), (10, 210))
                 self.screen.blit(self.font.render('• For every person that visits your park, you get income.', True, (255, 0, 0)), (10, 240))
-                self.screen.blit(self.font.render('• ', True, (255, 0, 0)), (10, 260))
-                self.screen.blit(self.font.render('• ', True, (255, 0, 0)), (10, 280))
-                self.screen.blit(self.font.render('• ', True, (255, 0, 0)), (10, 300))
-                self.screen.blit(self.font.render('• ', True, (255, 0, 0)), (10, 320))
+                self.screen.blit(self.font.render('• Every player gets $10.000 when they pass Start,', True, (255, 0, 0)), (10, 260))
+                self.screen.blit(self.font.render('   but if you land on the Start Tile you get $20.000.', True, (255, 0, 0)), (10, 280))
+                self.screen.blit(self.font.render('• If you land on a letter, you can choose if you want to buy a ride.       ', True, (255, 0, 0)), (10, 300))
+                self.screen.blit(self.font.render('• If you don’t want to buy a ride, your turn ends and you need to throw the dice for income.', True, (255, 0, 0)), (10, 320))
+                self.screen.blit(self.font.render('• If you want to buy a ride of that type, you pick 3 cards from the attraction type you landed on ,', True, (255, 0, 0)), (10, 340))
+                self.screen.blit(self.font.render('   if the total available to you exceeds 6 otherwise pick one from the 5 or less cards directly.', True, (255, 0, 0)), (10, 360))
+                self.screen.blit(self.font.render('• Choose one of the 3 rides you want to buy and pay the price of the ride.', True, (255, 0, 0)), (10, 380))
+                self.screen.blit(self.font.render('• When you buy a ride it first enters in spot 1,', True, (255, 0, 0)), (10, 400))
+                self.screen.blit(self.font.render('   the 2nd one you buy will enter in spot 2 etc.', True, (255, 0, 0)), (10, 420))
+                self.screen.blit(self.font.render('• switching to spot 7/8 (the safe spots) costs you an entire turn of not getting income and buying rides.', True, (255, 0, 0)), (10, 440))
+
                 pygame.display.update()
 
             def run(self):
