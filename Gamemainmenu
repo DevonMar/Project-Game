@@ -1,5 +1,7 @@
 import sys
 import pygame
+import time
+import random
 # from Music_list import *
 img = pygame.image.load('logo.png')
 pygame.init()
@@ -9,6 +11,12 @@ WHITE = (255, 255, 255)
 RED = (200, 0, 0)
 BRIGHT_RED = (255, 0, 0)
 BLACK = (0, 0, 0)
+
+positionlist =[(742,738),(637,715),(576,715), (512,715),(448,715),(385,715),(320, 715),(256,715),(192,715),(129,715)
+,(52, 775),(52, 640),(52, 575), (52, 510),(52,455),(52, 390),(52,325),(52,260),(52,195),(52, 130),(30,35),
+(130,30),(195,30),(260,30),(325,30),(390,30),(450,30),(515,30),(580,30),(640,30),(735,30),
+(735,130),(735,195),(735,260),(735, 325),(735, 390),(735, 455),(735,510),(735,575),(735,650)]
+
 
 mpos = pygame.mouse.get_pos()
 audio_count = 0
@@ -77,20 +85,114 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 screen_fix()
                 gm.run()
                 pygame.mixer.stop()
+
             elif action == "audio_off":
                 audio_count = 1
                 pygame.mixer.quit()
+
             elif action == "audio_on":
                 audio_count = 0
                 pygame.mixer.init()
                 pygame.mixer.music.load(settings)
                 pygame.mixer.music.play(-1, 0.0)
+
             elif action == "2p":
                 print("derp")
+                background = WHITE  # kleur voor achtergrond
+                w = 1000  # breedte window
+                h = 816  # lengte window
+                screen1 = pygame.display.set_mode((w, h))
+
+                bg = pygame.image.load('Bboard.png')  # laadt het plaatje alleen je moet hem in de goede plek hebben of in dezelfde map als de code
+                screen1.fill(background)
+                screen1.blit(bg, (0, 0))
+
+                p1.draw(screen1)
+                p2.draw(screen1)
+
+                pygame.display.flip()
+
+                # loop
+                mainloop = True
+                while mainloop:
+                    button("Dice", 850, 40, 100, 40, RED, BRIGHT_RED, "dice")
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            sys.exit()
+                        elif event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                pygame.quit()
+                                sys.exit()
+
             elif action == "3p":
                 print("derp")
+                background = WHITE  # kleur voor achtergrond
+                w = 1000  # breedte window
+                h = 816  # lengte window
+                screen1 = pygame.display.set_mode((w, h))
+
+                bg = pygame.image.load('Bboard.png')  # laadt het plaatje alleen je moet hem in de goede plek hebben of in dezelfde map als de code
+                screen1.fill(background)
+                screen1.blit(bg, (0, 0))
+
+                p1.draw(screen1)
+                p2.draw(screen1)
+                p3.draw(screen1)
+
+                pygame.display.flip()
+
+                # loop
+                mainloop = True
+                while mainloop:
+                    button("Dice", 850, 40, 100, 40, RED, BRIGHT_RED, "dice")
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            sys.exit()
+                        elif event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                pygame.quit()
+                                sys.exit()
+
             elif action == "4p":
                 print("derp")
+                background = WHITE  # kleur voor achtergrond
+                w = 1000  # breedte window
+                h = 816  # lengte window
+                screen1 = pygame.display.set_mode((w, h))
+
+                bg = pygame.image.load('Bboard.png')  # laadt het plaatje alleen je moet hem in de goede plek hebben of in dezelfde map als de code
+                screen1.fill(background)
+                screen1.blit(bg, (0, 0))
+
+                p1.draw(screen1)
+                p2.draw(screen1)
+                p3.draw(screen1)
+                p4.draw(screen1)
+
+                pygame.display.flip()
+
+                # loop
+                mainloop = True
+                while mainloop:
+                    button("Dice", 850, 40, 100, 40, RED, BRIGHT_RED, "dice")
+                    pygame.display.update()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            sys.exit()
+                        elif event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                pygame.quit()
+                                sys.exit()
+
+            elif action == "dice":
+                dobbel = random.randint(1, 6)
+                print(random.randint(1, 6))
+
 
     else:
         pygame.draw.rect(screen, ic, (x, y, w, h))
@@ -99,6 +201,36 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     textrect.center = ((x+(w/2)), (y+(h/2)))
     screen.blit(textsurf, textrect)
 
+
+class player:
+    def __init__(self,name,position,char,money,i):
+        self.name = name
+        self.position = position
+        self.char = char
+        self.money = money
+        self.i = i
+
+    def move(self, dobbel):
+     dobbel = random.randint(2,12)
+     for i in range(dobbel):
+            currenti = self.i
+            next= currenti
+            if next> 39 :
+                next = 0
+            self.position = positionlist[next]
+            self.i = next
+            time.sleep(.15)
+
+
+    def draw(self, field):
+        field.blit(pygame.transform.scale(self.char, (50, 40)),
+                   positionlist[self.i])
+
+
+p1 = player("p1",positionlist[0],pygame.image.load('bpawn.png'),1000, 0)
+p2 = player("p2",positionlist[0],pygame.image.load('blupawn.png'),1000, 0)
+p3 = player("p3",positionlist[0],pygame.image.load('gpawn.png'),1000, 0)
+p4 = player("p4",positionlist[0],pygame.image.load('rpawn.png'),1000, 0)
 
 class MenuItem(pygame.font.Font):
     def __init__(self, text, font=None, font_size=30,
