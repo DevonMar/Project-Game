@@ -207,6 +207,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
             elif action == "dice":
                 dobbel = random.randint(1, 6)
                 print(random.randint(1, 6))
+                time.sleep(.5)
 
 
 
