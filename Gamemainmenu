@@ -351,7 +351,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 time.sleep(.5)
                 p4.i += dobbel
                 if p4.i > 39:
-                    p4.i = p3.i - 39
+                    p4.i = p4.i - 39
                 print(p4.i)
                 p1.draw(screen1)
                 p2.draw(screen1)
