@@ -17,6 +17,7 @@ positionlist =[(742,738),(637,715),(576,715), (512,715),(448,715),(385,715),(320
 (130,30),(195,30),(260,30),(325,30),(390,30),(450,30),(515,30),(580,30),(640,30),(735,30),
 (735,130),(735,195),(735,260),(735, 325),(735, 390),(735, 455),(735,510),(735,575),(735,650)]
 
+t = 0
 amount = 0
 mpos = pygame.mouse.get_pos()
 audio_count = 0
@@ -78,6 +79,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     click = pygame.mouse.get_pressed()
     global audio_count
     global amount
+    global t
 
     if x+w > mpos[0] > x and y+h > mpos[1] > y:
         pygame.draw.rect(screen, ac, (x, y, w, h))
@@ -98,7 +100,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 pygame.mixer.music.play(-1, 0.0)
 
             elif action == "2p":
-                print("derp")
+                t = 0
                 amount += 2
                 background = WHITE  # kleur voor achtergrond
                 w = 1000  # breedte window
@@ -126,6 +128,15 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     button("Main menu", 850, 40, 100, 40, RED, BRIGHT_RED, "back")
                     button("Dice 1", 850, 100, 100, 40, RED, BRIGHT_RED, "dice")
                     button("Dice 2", 850, 160, 100, 40, RED, BRIGHT_RED, "dice2")
+
+                    font = pygame.font.SysFont('Bookman Old Style', 50)
+                    if t == 0:
+                        screen.blit(font.render('Player 1, roll dice 1', True, (255, 0, 0)), (200, 200))
+                    if t == 1:
+                        screen.blit(font.render('Player 2, roll dice 2', True, (255, 0, 0)), (200, 200))
+                    if action == "dice2":
+                        t -= 2
+
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -137,7 +148,6 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                                 sys.exit()
 
             elif action == "3p":
-                print("derp")
                 amount += 3
                 background = WHITE  # kleur voor achtergrond
                 w = 1000  # breedte window
@@ -167,6 +177,14 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     button("Dice 1", 850, 100, 100, 40, RED, BRIGHT_RED, "dice")
                     button("Dice 2", 850, 160, 100, 40, RED, BRIGHT_RED, "dice2")
                     button("Dice 3", 850, 220, 100, 40, RED, BRIGHT_RED, "dice3")
+
+                    font = pygame.font.SysFont('Bookman Old Style', 50)
+                    if t == 0:
+                        screen.blit(font.render('Player 1, roll dice 1', True, (255, 0, 0)), (200, 200))
+                    if t == 1:
+                        screen.blit(font.render('Player 2, roll dice 2', True, (255, 0, 0)), (200, 200))
+                    if t == 2:
+                        screen.blit(font.render('Player 3, roll dice 3', True, (255, 0, 0)), (200, 200))
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -178,7 +196,6 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                                 sys.exit()
 
             elif action == "4p":
-                print("derp")
                 amount += 4
                 background = WHITE  # kleur voor achtergrond
                 w = 1000  # breedte window
@@ -209,6 +226,15 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     button("Dice 2", 850, 160, 100, 40, RED, BRIGHT_RED, "dice2")
                     button("Dice 3", 850, 220, 100, 40, RED, BRIGHT_RED, "dice3")
                     button("Dice 4", 850, 280, 100, 40, RED, BRIGHT_RED, "dice4")
+                    font = pygame.font.SysFont('Bookman Old Style', 50)
+                    if t == 0:
+                        screen.blit(font.render('Player 1, roll dice 1', True, (255, 0, 0)), (200, 200))
+                    if t == 1:
+                        screen.blit(font.render('Player 2, roll dice 2', True, (255, 0, 0)), (200, 200))
+                    if t == 2:
+                        screen.blit(font.render('Player 3, roll dice 3', True, (255, 0, 0)), (200, 200))
+                    if t == 3:
+                        screen.blit(font.render('Player 4, roll dice 4', True, (255, 0, 0)), (200, 200))
                     pygame.display.update()
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -220,6 +246,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                                 sys.exit()
 
             elif action == "dice":
+                t += 1
                 w = 1000  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
@@ -248,6 +275,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 pygame.display.update()
 
             elif action == "dice2":
+                if amount == 2:
+                    t -= 1
+                else:
+                    t += 1
                 w = 1000  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
@@ -276,6 +307,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 pygame.display.update()
 
             elif action == "dice3":
+                if amount == 3:
+                    t -= 2
+                else:
+                    t += 1
                 w = 1000  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
@@ -301,6 +336,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 pygame.display.update()
 
             elif action == "dice4":
+                if amount == 4:
+                    t -= 3
+                else:
+                    t += 1
                 w = 1000  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
@@ -312,7 +351,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 time.sleep(.5)
                 p4.i += dobbel
                 if p4.i > 39:
-                   p4.i = p3.i - 39
+                    p4.i = p3.i - 39
                 print(p4.i)
                 p1.draw(screen1)
                 p2.draw(screen1)
@@ -340,10 +379,10 @@ class player:
         field.blit(pygame.transform.scale(self.char, (50, 40)),
                    positionlist[self.i])
 
-p1 = player("p1",positionlist[0], pygame.image.load('bpawn.png'),1000, 0)
-p2 = player("p2",positionlist[0], pygame.image.load('blupawn.png'),1000, 0)
-p3 = player("p3",positionlist[0], pygame.image.load('gpawn.png'),1000, 0)
-p4 = player("p4",positionlist[0], pygame.image.load('rpawn.png'),1000, 0)
+p1 = player("p1", positionlist[0], pygame.image.load('bpawn.png'), 1000, 0)
+p2 = player("p2", positionlist[0], pygame.image.load('blupawn.png'), 1000, 0)
+p3 = player("p3", positionlist[0], pygame.image.load('gpawn.png'), 1000, 0)
+p4 = player("p4", positionlist[0], pygame.image.load('rpawn.png'), 1000, 0)
 
 
 class MenuItem(pygame.font.Font):
