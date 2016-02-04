@@ -116,7 +116,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 t = 0
                 amount += 2
                 background = WHITE  # kleur voor achtergrond
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
 
@@ -139,7 +139,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 mainloop = True
                 while mainloop:
                     button("Exit game", 850, 20, 100, 40, RED, BRIGHT_RED, "quit")
-                    button("Instructions", 850, 80, 100, 40, RED, BRIGHT_RED, "link")
+                    button("Instructions", 845, 80, 110, 40, RED, BRIGHT_RED, "link")
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
@@ -164,7 +164,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
             elif action == "3p":
                 amount += 3
                 background = WHITE  # kleur voor achtergrond
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
 
@@ -188,7 +188,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 mainloop = True
                 while mainloop:
                     button("Exit game", 850, 20, 100, 40, RED, BRIGHT_RED, "quit")
-                    button("Instructions", 850, 80, 100, 40, RED, BRIGHT_RED, "link")
+                    button("Instructions", 845, 80, 110, 40, RED, BRIGHT_RED, "link")
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
@@ -216,7 +216,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
             elif action == "4p":
                 amount += 4
                 background = WHITE  # kleur voor achtergrond
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
 
@@ -240,7 +240,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 mainloop = True
                 while mainloop:
                     button("Exit game", 850, 20, 100, 40, RED, BRIGHT_RED, "quit")
-                    button("Instructions", 850, 80, 100, 40, RED, BRIGHT_RED, "link")
+                    button("Instructions", 845, 80, 110, 40, RED, BRIGHT_RED, "link")
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
@@ -270,9 +270,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 
             elif action == "dice":
                 t += 1
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
-                size = 256                      # Size of window/dice
+                size = 128                      # Size of window/dice
                 spsz = size//10                 # size of spots
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
@@ -282,7 +282,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 bg = pygame.image.load('Bboard.png')
                 screen1.fill(background)
                 screen1.blit(bg, (0, 0))
-                pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 dobbel = random.randint(1, 6)
                 time.sleep(.5)
                 p1.i += dobbel
@@ -291,21 +291,22 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 print(p1.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
-                    pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                    pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                     if n % 2 == 1:
-                        pygame.draw.circle(screen1, spotcol, (408, 408), spsz)  # middle spot
+                        pygame.draw.circle(screen1, spotcol, (880, 408), spsz)  # middle spot
                     if n == 2 or n == 3 or n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 472), spsz)  # left bottom
-                        pygame.draw.circle(screen1, spotcol, (472, 344), spsz)  # right top
+                        pygame.draw.circle(screen1, spotcol, (848, 440), spsz)  # left bottom
+                        pygame.draw.circle(screen1, spotcol, (912, 376), spsz)  # right top
                     if n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 344), spsz)  # left top
-                        pygame.draw.circle(screen1, spotcol, (472, 472), spsz)  # right bottom
+                        pygame.draw.circle(screen1, spotcol, (848, 376), spsz)  # left top
+                        pygame.draw.circle(screen1, spotcol, (912, 440), spsz)  # right bottom
                     if n == 6:
-                        pygame.draw.circle(screen1, spotcol, (408, 472), spsz)  # middle bottom
-                        pygame.draw.circle(screen1, spotcol, (408, 344), spsz)  # middle top
+                        pygame.draw.circle(screen1, spotcol, (880, 440), spsz)  # middle bottom
+                        pygame.draw.circle(screen1, spotcol, (880, 376), spsz)  # middle top
                     pygame.display.update()
                     time.sleep(0.2)
                 screen1.blit(bg, (0, 0))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 if amount == 2:
                     p1.draw(screen1)
                     p2.draw(screen1)
@@ -325,9 +326,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     t -= 1
                 else:
                     t += 1
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
-                size = 256                      # Size of window/dice
+                size = 128                      # Size of window/dice
                 spsz = size//10                 # size of spots
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
@@ -337,7 +338,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 bg = pygame.image.load('Bboard.png')
                 screen1.fill(background)
                 screen1.blit(bg, (0, 0))
-                pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 dobbel = random.randint(1, 6)
                 time.sleep(.5)
                 p2.i += dobbel
@@ -346,21 +347,22 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 print(p2.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
-                    pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                    pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                     if n % 2 == 1:
-                        pygame.draw.circle(screen1, spotcol, (408, 408), spsz)  # middle spot
+                        pygame.draw.circle(screen1, spotcol, (880, 408), spsz)  # middle spot
                     if n == 2 or n == 3 or n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 472), spsz)  # left bottom
-                        pygame.draw.circle(screen1, spotcol, (472, 344), spsz)  # right top
+                        pygame.draw.circle(screen1, spotcol, (848, 440), spsz)  # left bottom
+                        pygame.draw.circle(screen1, spotcol, (912, 376), spsz)  # right top
                     if n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 344), spsz)  # left top
-                        pygame.draw.circle(screen1, spotcol, (472, 472), spsz)  # right bottom
+                        pygame.draw.circle(screen1, spotcol, (848, 376), spsz)  # left top
+                        pygame.draw.circle(screen1, spotcol, (912, 440), spsz)  # right bottom
                     if n == 6:
-                        pygame.draw.circle(screen1, spotcol, (408, 472), spsz)  # middle bottom
-                        pygame.draw.circle(screen1, spotcol, (408, 344), spsz)  # middle top
+                        pygame.draw.circle(screen1, spotcol, (880, 440), spsz)  # middle bottom
+                        pygame.draw.circle(screen1, spotcol, (880, 376), spsz)  # middle top
                     pygame.display.update()
                     time.sleep(0.2)
                 screen1.blit(bg, (0, 0))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 if amount == 2:
                     p1.draw(screen1)
                     p2.draw(screen1)
@@ -380,9 +382,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     t -= 2
                 else:
                     t += 1
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
-                size = 256                      # Size of window/dice
+                size = 128                      # Size of window/dice
                 spsz = size//10                 # size of spots
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
@@ -392,7 +394,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 bg = pygame.image.load('Bboard.png')
                 screen1.fill(background)
                 screen1.blit(bg, (0, 0))
-                pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 dobbel = random.randint(1, 6)
                 time.sleep(.5)
                 p3.i += dobbel
@@ -401,21 +403,22 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 print(p3.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
-                    pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                    pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                     if n % 2 == 1:
-                        pygame.draw.circle(screen1, spotcol, (408, 408), spsz)  # middle spot
+                        pygame.draw.circle(screen1, spotcol, (880, 408), spsz)  # middle spot
                     if n == 2 or n == 3 or n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 472), spsz)  # left bottom
-                        pygame.draw.circle(screen1, spotcol, (472, 344), spsz)  # right top
+                        pygame.draw.circle(screen1, spotcol, (848, 440), spsz)  # left bottom
+                        pygame.draw.circle(screen1, spotcol, (912, 376), spsz)  # right top
                     if n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 344), spsz)  # left top
-                        pygame.draw.circle(screen1, spotcol, (472, 472), spsz)  # right bottom
+                        pygame.draw.circle(screen1, spotcol, (848, 376), spsz)  # left top
+                        pygame.draw.circle(screen1, spotcol, (912, 440), spsz)  # right bottom
                     if n == 6:
-                        pygame.draw.circle(screen1, spotcol, (408, 472), spsz)  # middle bottom
-                        pygame.draw.circle(screen1, spotcol, (408, 344), spsz)  # middle top
+                        pygame.draw.circle(screen1, spotcol, (880, 440), spsz)  # middle bottom
+                        pygame.draw.circle(screen1, spotcol, (880, 376), spsz)  # middle top
                     pygame.display.update()
                     time.sleep(0.2)
                 screen1.blit(bg, (0, 0))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 if amount == 3:
                     p1.draw(screen1)
                     p2.draw(screen1)
@@ -433,9 +436,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     t -= 3
                 else:
                     t += 1
-                w = 1000  # breedte window
+                w = 1200  # breedte window
                 h = 816  # lengte window
-                size = 256                      # Size of window/dice
+                size = 128                      # Size of window/dice
                 spsz = size//10                 # size of spots
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
@@ -445,31 +448,30 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 bg = pygame.image.load('Bboard.png')
                 screen1.fill(background)
                 screen1.blit(bg, (0, 0))
-                pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 dobbel = random.randint(1, 6)
                 p4.i += dobbel
-
                 if p4.i > 39:
                     p4.i -= 39
                 print(p4.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
-                    pygame.draw.rect(screen1, diecol, (280, 280, 256, 256))
+                    pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                     if n % 2 == 1:
-                        pygame.draw.circle(screen1, spotcol, (408, 408), spsz)  # middle spot
+                        pygame.draw.circle(screen1, spotcol, (880, 408), spsz)  # middle spot
                     if n == 2 or n == 3 or n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 472), spsz)  # left bottom
-                        pygame.draw.circle(screen1, spotcol, (472, 344), spsz)  # right top
+                        pygame.draw.circle(screen1, spotcol, (848, 440), spsz)  # left bottom
+                        pygame.draw.circle(screen1, spotcol, (912, 376), spsz)  # right top
                     if n == 4 or n == 5 or n == 6:
-                        pygame.draw.circle(screen1, spotcol, (344, 344), spsz)  # left top
-                        pygame.draw.circle(screen1, spotcol, (472, 472), spsz)  # right bottom
+                        pygame.draw.circle(screen1, spotcol, (848, 376), spsz)  # left top
+                        pygame.draw.circle(screen1, spotcol, (912, 440), spsz)  # right bottom
                     if n == 6:
-                        pygame.draw.circle(screen1, spotcol, (408, 472), spsz)  # middle bottom
-                        pygame.draw.circle(screen1, spotcol, (408, 344), spsz)  # middle top
+                        pygame.draw.circle(screen1, spotcol, (880, 440), spsz)  # middle bottom
+                        pygame.draw.circle(screen1, spotcol, (880, 376), spsz)  # middle top
                     pygame.display.update()
                     time.sleep(0.2)
-
                 screen1.blit(bg, (0, 0))
+                pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
                 p1.draw(screen1)
                 p2.draw(screen1)
                 p3.draw(screen1)
@@ -496,10 +498,10 @@ class Player:
         field.blit(pygame.transform.scale(self.char, (50, 40)),
                    positionlist[self.i])
 
-p1 = Player("p1", positionlist[0], pygame.image.load('bpawn.png'), 1000, 0)
-p2 = Player("p2", positionlist[0], pygame.image.load('blupawn.png'), 1000, 0)
-p3 = Player("p3", positionlist[0], pygame.image.load('gpawn.png'), 1000, 0)
-p4 = Player("p4", positionlist[0], pygame.image.load('rpawn.png'), 1000, 0)
+p1 = Player("p1", positionlist[0], pygame.image.load('bpawn.png'), 10000, 0)
+p2 = Player("p2", positionlist[0], pygame.image.load('blupawn.png'), 10000, 0)
+p3 = Player("p3", positionlist[0], pygame.image.load('gpawn.png'), 10000, 0)
+p4 = Player("p4", positionlist[0], pygame.image.load('rpawn.png'), 10000, 0)
 
 
 class MenuItem(pygame.font.Font):
