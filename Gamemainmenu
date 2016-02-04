@@ -86,6 +86,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     global audio_count
     global amount
     global t
+    global p1money
+    global p2money
+    global p3money
+    global p4money
 
     if x+w > mpos[0] > x and y+h > mpos[1] > y:
         pygame.draw.rect(screen, ac, (x, y, w, h))
@@ -115,7 +119,14 @@ def button(msg, x, y, w, h, ic, ac, action=None):
             elif action == "2p":
                 t = 0
                 amount += 2
+                fontg = pygame.font.SysFont("calibri", 20)
+                pygame.display.set_caption('MonoCoasterWeg')
                 background = WHITE  # kleur voor achtergrond
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
                 w = 1200  # breedte window
                 h = 816  # lengte window
                 screen1 = pygame.display.set_mode((w, h))
@@ -133,6 +144,14 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     p2.draw(screen1)
                 draw()
 
+                # player1
+                screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                # player2
+                screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
                 pygame.display.flip()
 
                 # loop
@@ -143,7 +162,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
-                        button("Dice 2", 850, 200, 100, 40, RED, BRIGHT_RED, "dice2")
+                        button("Dice 2", 850, 140, 100, 40, RED, BRIGHT_RED, "dice2")
 
                     font = pygame.font.SysFont('Bookman Old Style', 40)
                     if t == 0:
@@ -163,9 +182,18 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 
             elif action == "3p":
                 amount += 3
+                fontg = pygame.font.SysFont("calibri", 20)
+                pygame.display.set_caption('MonoCoasterWeg')
                 background = WHITE  # kleur voor achtergrond
                 w = 1200  # breedte window
                 h = 816  # lengte window
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
                 screen1 = pygame.display.set_mode((w, h))
 
                 bg = pygame.image.load('Bboard.png')
@@ -182,7 +210,17 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     p3.draw(screen1)
                 draw()
 
-                pygame.display.flip()
+                # player1
+                screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                # player2
+                screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                # player3
+                screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
 
                 # loop
                 mainloop = True
@@ -192,9 +230,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
-                        button("Dice 2", 850, 200, 100, 40, RED, BRIGHT_RED, "dice2")
+                        button("Dice 2", 850, 140, 100, 40, RED, BRIGHT_RED, "dice2")
                     elif t == 2:
-                        button("Dice 3", 850, 260, 100, 40, RED, BRIGHT_RED, "dice3")
+                        button("Dice 3", 850, 140, 100, 40, RED, BRIGHT_RED, "dice3")
 
                     font = pygame.font.SysFont('Bookman Old Style', 40)
                     if t == 0:
@@ -215,9 +253,20 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 
             elif action == "4p":
                 amount += 4
+                fontg = pygame.font.SysFont("calibri", 20)
+                pygame.display.set_caption('MonoCoasterWeg')
                 background = WHITE  # kleur voor achtergrond
                 w = 1200  # breedte window
                 h = 816  # lengte window
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
+                p4money = 10000
+                p4m = "player4 money =" + str(p4money)
                 screen1 = pygame.display.set_mode((w, h))
 
                 bg = pygame.image.load('Bboard.png')
@@ -234,6 +283,23 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     p3.draw(screen1)
                     p4.draw(screen1)
                 draw()
+
+                # player1
+                screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                # player2
+                screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                # player3
+                screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                # player4
+                screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
                 pygame.display.flip()
 
                 # loop
@@ -244,11 +310,11 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     if t == 0:
                         button("Dice 1", 850, 140, 100, 40, RED, BRIGHT_RED, "dice")
                     elif t == 1:
-                        button("Dice 2", 850, 200, 100, 40, RED, BRIGHT_RED, "dice2")
+                        button("Dice 2", 850, 140, 100, 40, RED, BRIGHT_RED, "dice2")
                     elif t == 2:
-                        button("Dice 3", 850, 260, 100, 40, RED, BRIGHT_RED, "dice3")
+                        button("Dice 3", 850, 140, 100, 40, RED, BRIGHT_RED, "dice3")
                     elif t == 3:
-                        button("Dice 4", 850, 320, 100, 40, RED, BRIGHT_RED, "dice4")
+                        button("Dice 4", 850, 140, 100, 40, RED, BRIGHT_RED, "dice4")
                     font = pygame.font.SysFont('Bookman Old Style', 40)
                     if t == 0:
                         screen.blit(font.render('Player 1, roll dice 1', True, (255, 0, 0)), (300, 130))
@@ -277,7 +343,17 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
                 spotcol = (0, 0, 0)             # spot colour
+                fontg = pygame.font.SysFont("calibri", 20)
                 screen1 = pygame.display.set_mode((w, h))
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
+                p4money = 10000
+                p4m = "player4 money =" + str(p4money)
                 background = WHITE  # kleur voor achtergrond
                 bg = pygame.image.load('Bboard.png')
                 screen1.fill(background)
@@ -288,6 +364,11 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 p1.i += dobbel
                 if p1.i > 39:
                     p1.i -= 39
+                    p1money += 10000
+                elif p1.i == 0:
+                    p1money += 20000
+                elif p1.i == 5/15/25/35:
+                    p1money -= 5000
                 print(p1.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
@@ -307,18 +388,62 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     time.sleep(0.2)
                 screen1.blit(bg, (0, 0))
                 pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
+
                 if amount == 2:
                     p1.draw(screen1)
                     p2.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
                 elif amount == 3:
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                    # player4
+                    screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                    screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
                 else:
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
                     p4.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                    # player4
+                    screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                    screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
                 pygame.display.update()
 
             elif action == "dice2":
@@ -333,6 +458,16 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
                 spotcol = (0, 0, 0)             # spot colour
+                fontg = pygame.font.SysFont("calibri", 20)
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
+                p4money = 10000
+                p4m = "player4 money =" + str(p4money)
                 screen1 = pygame.display.set_mode((w, h))
                 background = WHITE  # kleur voor achtergrond
                 bg = pygame.image.load('Bboard.png')
@@ -344,6 +479,11 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 p2.i += dobbel
                 if p2.i > 39:
                     p2.i -= 39
+                    p2money += 10000
+                elif p2.i == 0:
+                    p2money += 20000
+                elif p2.i == 5/15/25/35:
+                    p2money -= 5000
                 print(p2.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
@@ -366,15 +506,54 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 if amount == 2:
                     p1.draw(screen1)
                     p2.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
                 elif amount == 3:
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
                 else:
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
                     p4.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                    # player4
+                    screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                    screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
                 pygame.display.update()
 
             elif action == "dice3":
@@ -389,6 +568,16 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
                 spotcol = (0, 0, 0)             # spot colour
+                fontg = pygame.font.SysFont("calibri", 20)
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
+                p4money = 10000
+                p4m = "player4 money =" + str(p4money)
                 screen1 = pygame.display.set_mode((w, h))
                 background = WHITE  # kleur voor achtergrond
                 bg = pygame.image.load('Bboard.png')
@@ -400,6 +589,11 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 p3.i += dobbel
                 if p3.i > 39:
                     p3.i -= 39
+                    p3money += 10000
+                elif p3.i == 0:
+                    p3money += 20000
+                elif p3.i == 5/15/25/35:
+                    p3money -= 5000
                 print(p3.i)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
@@ -423,11 +617,41 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
                 else:
                     p1.draw(screen1)
                     p2.draw(screen1)
                     p3.draw(screen1)
                     p4.draw(screen1)
+
+                    # player1
+                    screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                    screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                    # player2
+                    screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                    screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                    # player3
+                    screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                    screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                    # player4
+                    screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                    screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
                 pygame.display.update()
 
             elif action == "dice4":
@@ -443,6 +667,16 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 rolling = 6                     # times that dice rolls before stopping
                 diecol = (255, 255, 255)        # die colour
                 spotcol = (0, 0, 0)             # spot colour
+                fontg = pygame.font.SysFont("calibri", 20)
+                # geld players
+                p1money = 10000
+                p1m = "player1 money =" + str(p1money)
+                p2money = 10000
+                p2m = "player2 money =" + str(p2money)
+                p3money = 10000
+                p3m = "player3 money =" + str(p3money)
+                p4money = 10000
+                p4m = "player4 money =" + str(p4money)
                 screen1 = pygame.display.set_mode((w, h))
                 background = WHITE  # kleur voor achtergrond
                 bg = pygame.image.load('Bboard.png')
@@ -453,7 +687,13 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                 p4.i += dobbel
                 if p4.i > 39:
                     p4.i -= 39
+                    p4money += 10000
+                elif p4.i == 0:
+                    p4money += 20000
+                elif p4.i == 5/15/25/35:
+                    p4money -= 5000
                 print(p4.i)
+                print(p4money)
                 for i in range(rolling):                          # roll the die...
                     n = random.randint(1, 6)                      # random number between 1 & 6
                     pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
@@ -472,10 +712,28 @@ def button(msg, x, y, w, h, ic, ac, action=None):
                     time.sleep(0.2)
                 screen1.blit(bg, (0, 0))
                 pygame.draw.rect(screen1, diecol, (816, 346, 128, 128))
+
                 p1.draw(screen1)
                 p2.draw(screen1)
                 p3.draw(screen1)
                 p4.draw(screen1)
+
+                # player1
+                screen.blit(fontg.render("player1", True, (0, 0, 0)), (970, 20))
+                screen.blit(fontg.render(p1m, True, (0, 0, 0)), (970, 40))
+
+                # player2
+                screen.blit(fontg.render("player2", True, (0, 0, 255)), (970, 60))
+                screen.blit(fontg.render(p2m, True, (0, 0, 255)), (970, 80))
+
+                # player3
+                screen.blit(fontg.render("player3", True, (0, 180, 0)), (970, 100))
+                screen.blit(fontg.render(p3m, True, (0, 180, 0)), (970, 120))
+
+                # player4
+                screen.blit(fontg.render("player4", True, (255, 0, 0)), (970, 140))
+                screen.blit(fontg.render(p4m, True, (255, 0, 0)), (970, 160))
+
             pygame.display.update()
 
     else:
