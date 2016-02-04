@@ -1,0 +1,98 @@
+import pygame
+import sys
+
+pygame.init()
+
+
+#  money
+p1money= 1000
+p1m="p1money = "+ str(p1money)
+
+p2money= 1000
+p2m="p2money = "+ str(p1money)
+
+p3money= 1000
+p3m="p3money = "+ str(p1money)
+
+p4money= 1000
+p4m="p4money = "+ str(p1money)
+
+
+
+#______________________________________________
+w = 600  #breedte window
+h = 600  #lengte window
+
+screen= pygame.display.set_mode((w, h))
+
+
+background = (255,255,255) # kleur voor achtergrond
+
+
+
+# ______________________________________________________________________________
+#                               GUI
+# ______________________________________________________________________________
+
+
+pygame.draw.rect(screen, background, (0, 0, 600, 600))
+fontG = pygame.font.SysFont("calibri",30)
+
+
+# player1
+screen.blit( fontG.render("player1", True,(0,0,0)),(380,100))
+screen.blit( fontG.render(p1m, True,(0,0,0)),(380,120))
+
+# player2
+screen.blit( fontG.render("player2", True,(0,0,255)),(380,200))
+screen.blit( fontG.render(p2m, True,(0,0,255)),(380,220))
+
+# player3
+screen.blit( fontG.render("player3", True,(0,180,0)),(380,300))
+screen.blit( fontG.render(p3m, True,(0,180,0)),(380,320))
+
+# player4
+screen.blit( fontG.render("player4", True,(255,0,0)),(380,400))
+screen.blit( fontG.render(p4m, True,(255,0,0)),(380,420))
+
+
+
+
+
+
+
+
+
+
+
+
+
+pygame.display.flip()
+
+
+
+
+
+
+
+
+
+
+#loop
+while True:
+ ev = pygame.event.poll()
+ if ev.type == pygame.QUIT:
+    break
+ if ev.type == pygame.MOUSEBUTTONDOWN :
+    p1money -= 100
+    p1m= fontG.render(p1money, 1,(0,0,0)),(380,120)
+
+
+
+
+
+
+
+
+
+pygame.display.update()
