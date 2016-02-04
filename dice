@@ -1,0 +1,40 @@
+import pygame
+import sys, random, time
+pygame.init()
+from board import *
+Dice1= pygame.image.load('C:/dtile1.png')
+Dice2= pygame.image.load('C:/dtile2.png')
+Dice3= pygame.image.load('C:/dtile3.png')
+Dice4= pygame.image.load('C:/dtile4.png')
+Dice5= pygame.image.load('C:/dtile5.png')
+Dice6= pygame.image.load('C:/dtile6.png')
+
+
+class Dice:
+    def __init__(self):
+        self.value = 5
+
+    def roll(self, action):
+        times_to_roll = random.randint(2, 12)
+        for i in range(0, times_to_roll+1):
+            ran = random.randint(1,6)
+            if ran == 1:
+                screen.blit(Dice1, (910, 110))
+                pygame.display.flip()
+            elif ran == 2:
+                screen.blit(Dice2, (910, 110))
+                pygame.display.flip()
+            elif ran == 3:
+                screen.blit(Dice3, (910, 110))
+                pygame.display.flip()
+            elif ran == 4:
+                screen.blit(Dice4, (910, 110))
+                pygame.display.flip()
+            elif ran == 5:
+                screen.blit(Dice5, (910, 110))
+                pygame.display.flip()
+            elif ran == 6:
+                screen.blit(Dice6, (910, 110))
+                pygame.display.flip()
+            time.sleep(0.15)
+        self.value = ran
