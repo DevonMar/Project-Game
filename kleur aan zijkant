@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+# ______________________________________________________________________________
+#                               GUI
+# ______________________________________________________________________________
+
+
+pygame.draw.rect(screen, background, (0, 0, 600, 600))
+fontG = pygame.font.SysFont("calibri",30)
+
+
+# player1
+screen.blit( fontG.render("player1", True,(0,0,0)),(380,100))
+screen.blit( fontG.render(p1m, True,(0,0,0)),(380,120))
+
+# player2
+screen.blit( fontG.render("player2", True,(0,0,255)),(380,200))
+screen.blit( fontG.render(p2m, True,(0,0,255)),(380,220))
+
+# player3
+screen.blit( fontG.render("player3", True,(0,180,0)),(380,300))
+screen.blit( fontG.render(p3m, True,(0,180,0)),(380,320))
+
+# player4
+screen.blit( fontG.render("player4", True,(255,0,0)),(380,400))
+screen.blit( fontG.render(p4m, True,(255,0,0)),(380,420))
