@@ -1,0 +1,69 @@
+import pygame,time,random,sys
+
+
+positionlist =[(742,738),(637,715),(576,715), (512,715),(448,715),(385,715),(320, 715),(256,715),(192,715),(129,715)
+,(52, 775),(52, 640),(52, 575), (52, 510),(52,455),(52, 390),(52,325),(52,260),(52,195),(52, 130),(30,35),
+(130,30),(195,30),(260,30),(325,30),(390,30),(450,30),(515,30),(580,30),(640,30),(735,30),
+(735,130),(735,195),(735,260),(735, 325),(735, 390),(735, 455),(735,510),(735,575),(735,650)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class player:
+    def __init__(self,name,position,char,money,i):
+        self.name = name
+        self.position = position
+        self.char = char
+        self.money = money
+        self.i = i
+
+    def move(self, dobbel):
+     dobbel = random.randint(2,12)
+     for i in range(dobbel):
+            currenti = self.i
+            next= currenti
+            if next> 39 :
+                next = 0
+            self.position = positionlist[next]
+            self.i = next
+            time.sleep(.15)
+
+
+    def draw(self, field):
+        field.blit(pygame.transform.scale(self.char, (50, 40)),
+                   positionlist[self.i])
+
+
+p1= player("p1",positionlist[0],pygame.image.load('bpawn.png'),1000,0)
+p2= player("p2",positionlist[0],pygame.image.load('blupawn.png'),1000,1)
+p3= player("p3",positionlist[0],pygame.image.load('gpawn.png'),1000,2 )
+p4= player("p4",positionlist[0],pygame.image.load('rpawn.png'),1000,3 )
+
+
+p1money = 200
